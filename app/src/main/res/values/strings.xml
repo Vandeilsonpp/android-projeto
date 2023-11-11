@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">ultimavez</string>
+
+    <string-array name="categorias">
+        <item>Gourmet</item>
+        <item>Vegano</item>
+        <item>Premium</item>
+        <item>Especiais</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_margin="20dp"
+    android:background="@drawable/rounded_pink_background"
+    android:padding="6dp">
+
+    <ImageView
+        android:id="@+id/productImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:scaleType="centerCrop"
+        android:layout_gravity="center"
+        android:src="@drawable/logo" />
+
+
+    <TextView
+        android:textStyle="bold"
+        android:id="@+id/productName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Nome do produto"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/productDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descrição do produto que vai aparecer em 3 linhas"
+        android:lines="3"
+        android:textStyle="italic"
+        android:textColor="@color/grey"
+        android:textSize="13sp" />
+
+    <TextView
+        android:id="@+id/productPrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Preço: R$0.00"
+        android:textStyle="bold"
+        android:textColor="@color/strong_pink"
+        android:layout_gravity="end"
+        android:layout_marginEnd="10sp"
+        android:textSize="14sp" />
+</LinearLayout>

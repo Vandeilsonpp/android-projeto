@@ -1,0 +1,49 @@
+package com.example.ultimavez.activity;
+
+import android.content.Intent;
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
+import com.example.ultimavez.R;
+
+public class SellerHomePageActivity extends AppCompatActivity {
+
+    private CardView cadastrar, atualizar, listar;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.seller_home_page);
+        getSupportActionBar().hide();
+
+        inicializarComponentes();
+
+        cadastrar.setOnClickListener(it -> abrirCadastroProduto());
+        atualizar.setOnClickListener(it -> abrirAtualizarProduto());
+        listar.setOnClickListener(it -> abrirListarProduto());
+    }
+
+    private void inicializarComponentes() {
+        cadastrar = findViewById(R.id.cardCadastrar);
+        atualizar = findViewById(R.id.cardAtualizar);
+        listar = findViewById(R.id.cardListar);
+    }
+
+    private void abrirListarProduto() {
+        Intent intent = new Intent(SellerHomePageActivity.this, SellerListOfProductsActivity.class);
+        startActivity(intent);
+    }
+
+
+    private void abrirCadastroProduto() {
+        Intent intent = new Intent(SellerHomePageActivity.this, RegisterProductActivity.class);
+        startActivity(intent);
+    }
+
+    private void abrirAtualizarProduto() {
+        Intent intent = new Intent(SellerHomePageActivity.this, UpdateProductActivity.class);
+        startActivity(intent);
+    }
+}

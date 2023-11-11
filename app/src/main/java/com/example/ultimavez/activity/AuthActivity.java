@@ -1,0 +1,98 @@
+package com.example.ultimavez.activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Switch;
+
+import com.example.ultimavez.R;
+import com.example.ultimavez.fragment.ErrorInflator;
+import com.example.ultimavez.helper.Result;
+import com.example.ultimavez.model.DTO.LoginDTO;
+import com.example.ultimavez.model.domain.User;
+import com.example.ultimavez.model.enums.UserEnum;
+import com.example.ultimavez.service.LoginService;
+
+public class AuthActivity extends AppCompatActivity {
+
+    private Button btnAcessar, btnCadastro, btnRedefinirSenha;
+    private EditText campoEmail, camposenha;
+    private Switch tipoAcesso;
+    private final LoginService loginService = new LoginService();
+    SharedPreferences sharedPreferences;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_auth);
+        getSupportActionBar().hide();
+
+        inicializarComponentes();
+        sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+
+        btnAcessar.setOnClickListener(it -> realizarLogin());
+        //btnAcessar.setOnClickListener(it -> realizarLoginByPass());
+        btnCadastro.setOnClickListener(view -> abrirCadastro());
+        btnRedefinirSenha.setOnClickListener(view -> abrirRedefinirSenha());
+    }
+
+    private void realizarLoginByPass() {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong("userId", 5);
+        editor.apply();
+
+        Intent intent = new Intent(AuthActivity.this, SellerHomePageActivity.class);
+        startActivity(intent);
+    }
+
+    private void realizarLogin() {
+        LoginDTO loginDTO = new LoginDTO(
+                campoEmail.getText().toString(),
+                camposenha.getText().toString(),
+                tipoAcesso.isChecked() ? UserEnum.SELLER : UserEnum.CUSTOMER);
+
+        Result<User> result = loginService.login(loginDTO);
+
+        if (!result.isValid()) {
+            ErrorInflator.showErrors(result.getErrors(), this);
+        } else {
+            storeUserSession(result.getResultObject());
+
+            Intent intent = new Intent(AuthActivity.this, defineHomePage(result.getResultObject().getType()));
+            startActivity(intent);
+        }
+    }
+
+    private Class<? extends AppCompatActivity> defineHomePage(UserEnum userType) {
+        return userType == UserEnum.SELLER ? SellerHomePageActivity.class : CustomerHomePageActivity.class;
+    }
+
+    private void inicializarComponentes() {
+        campoEmail = findViewById(R.id.txtEmail);
+        camposenha = findViewById(R.id.txtPassword);
+        btnCadastro = findViewById(R.id.btnSignup);
+        btnAcessar = findViewById(R.id.btnLogin);
+        tipoAcesso = findViewById(R.id.switchAcesso);
+        btnRedefinirSenha = findViewById(R.id.btnForgotPassword);
+    }
+
+    private void abrirCadastro() {
+        Intent intent = new Intent(AuthActivity.this, SignUpActivity.class);
+        startActivity(intent);
+    }
+
+    public void abrirRedefinirSenha() {
+        Intent intent = new Intent(AuthActivity.this, RedefinePasswordActivity.class);
+        startActivity(intent);
+    }
+
+    private void storeUserSession(User user) {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putLong("userId", user.getId());
+        editor.apply();
+    }
+}
