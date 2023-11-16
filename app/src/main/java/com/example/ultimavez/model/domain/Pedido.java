@@ -100,8 +100,4 @@ public class Pedido {
     public String getCodigoCupom() {
         return codigoCupom;
     }
-
-    public boolean isTemCupomAplicado() {
-        return temCupomAplicado;
-    }
 }

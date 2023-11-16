@@ -16,14 +16,11 @@ import com.example.ultimavez.fragment.SuccessFragment;
 import com.example.ultimavez.helper.Notifications;
 import com.example.ultimavez.helper.Result;
 import com.example.ultimavez.model.domain.Carrinho;
-import com.example.ultimavez.model.domain.Cupom;
 import com.example.ultimavez.model.domain.Pedido;
-import com.example.ultimavez.model.enums.PedidoStatusEnum;
 import com.example.ultimavez.model.enums.TiposPagamentoEnum;
 import com.example.ultimavez.service.PagamentoService;
 import com.example.ultimavez.service.PedidoService;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -87,7 +84,7 @@ public class CheckoutActivity extends AppCompatActivity {
         if (!result.isValid()) {
             showErrors(result.getErrors());
         } else {
-            showSuccess("Cupom aplicado com sucesso");
+            showSuccess("Cupom aplicado com sucesso", CheckoutActivity.class);
         }
     }
 
@@ -104,8 +101,8 @@ public class CheckoutActivity extends AppCompatActivity {
             if (!result.isValid()) {
                 showErrors(result.getErrors());
             } else {
-                showSuccess("Pagamento realizado com sucesso");
-                notificarUsuario();
+                showSuccess("Seu pedido foi recebido e pago com sucesso!", CustomerHomePageActivity.class);
+                carrinho.cleanCarrinho();
             }
         }
     }
@@ -114,15 +111,9 @@ public class CheckoutActivity extends AppCompatActivity {
         ErrorInflator.showErrors(notifications, this);
     }
 
-    private void showSuccess(String message) {
-        SuccessFragment successDialog = new SuccessFragment(message, CheckoutActivity.class);
+    private void showSuccess(String message, Class clazz) {
+        SuccessFragment successDialog = new SuccessFragment(message, clazz);
         successDialog.show(getSupportFragmentManager(), null);
-    }
-
-
-    private void notificarUsuario() {
-        Notifications notifications = new Notifications();
-        //notifications.notificarPagamento(this, "Pagamento Aprovado", "Seu pedido foi recebido e pago com sucesso!");
     }
 
 }
