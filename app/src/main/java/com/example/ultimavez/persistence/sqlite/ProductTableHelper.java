@@ -31,7 +31,7 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
     public static final String COLUMN_SELLER = "seller";
 
     private static final String CREATE_PRODUCTS_TABLE =
-            "CREATE TABLE " + TABLE_NAME + " (" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY, " +
                     COLUMN_NAME + " TEXT, " +
                     COLUMN_CATEGORY + " TEXT CHECK (" +
@@ -60,6 +60,7 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
     @Override
     public Result<Product> save(Product product, long sellerId) {
         SQLiteDatabase db = this.getWritableDatabase();
+        onCreate(db);
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_NAME, product.getName());
@@ -79,6 +80,7 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
     @Override
     public boolean existsByName(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
+        onCreate(db);
 
         String query = "SELECT 1 FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = ?";
         String[] selectionArgs = {name};

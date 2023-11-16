@@ -25,7 +25,7 @@ public class PedidoTableHelper extends SQLiteOpenHelper implements PedidoPersist
     public static final String COLUMN_TIPO_PAGAMENTO = "tipoPagamento";
 
     private static final String CREATE_PEDIDOS_TABLE =
-            "CREATE TABLE " + TABLE_NAME + " (" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_ID_COMPRADOR + " INTEGER NOT NULL, " +
                     COLUMN_STATUS + " TEXT NOT NULL, " +
@@ -60,6 +60,7 @@ public class PedidoTableHelper extends SQLiteOpenHelper implements PedidoPersist
     @Override
     public Result<Pedido> savePedido(Pedido pedido) {
         SQLiteDatabase db = this.getWritableDatabase();
+        onCreate(db);
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_ID_COMPRADOR, pedido.getIdComprador());

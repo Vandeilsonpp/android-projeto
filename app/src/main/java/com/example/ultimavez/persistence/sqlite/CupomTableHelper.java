@@ -26,7 +26,7 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
 
 
     private static final String CREATE_CUPOM_TABLE =
-            "CREATE TABLE " + TABLE_NAME + " (" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_CODIGO + " TEXT NOT NULL, " +
                     COLUMN_VALIDO + " TEXT NOT NULL, " +
@@ -56,6 +56,7 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
     @Override
     public Result<Cupom> saveCupom(Cupom cupom) {
         SQLiteDatabase db = this.getWritableDatabase();
+        onCreate(db);
         ContentValues contentValues = new ContentValues();
 
         contentValues.put(COLUMN_CODIGO, cupom.getCodigo());
@@ -73,6 +74,7 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
     @Override
     public Optional<Cupom> findByCodigo(String codigo) {
         SQLiteDatabase db = this.getReadableDatabase();
+        onCreate(db);
 
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CODIGO + " = ?" + " AND " + COLUMN_VALIDO + " = ?";
         String[] selectionArgs = {codigo, "1"};
@@ -98,6 +100,7 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
     @Override
     public boolean existsByCodigo(String codigo) {
         SQLiteDatabase db = this.getReadableDatabase();
+        onCreate(db);
 
         String query = "SELECT 1 FROM " + TABLE_NAME + " WHERE " + COLUMN_CODIGO + " = ?";
         String[] selectionArgs = {codigo};
