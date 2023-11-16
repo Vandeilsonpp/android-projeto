@@ -7,10 +7,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import com.example.ultimavez.R;
+import com.example.ultimavez.model.domain.Cupom;
 
 public class SellerHomePageActivity extends AppCompatActivity {
 
-    private CardView cadastrar, atualizar, listar;
+    private CardView cadastrar, atualizar, listar, cupom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +24,14 @@ public class SellerHomePageActivity extends AppCompatActivity {
         cadastrar.setOnClickListener(it -> abrirCadastroProduto());
         atualizar.setOnClickListener(it -> abrirAtualizarProduto());
         listar.setOnClickListener(it -> abrirListarProduto());
+        cupom.setOnClickListener(it -> abrirGerenciarCupons());
     }
 
     private void inicializarComponentes() {
         cadastrar = findViewById(R.id.cardCadastrar);
         atualizar = findViewById(R.id.cardAtualizar);
         listar = findViewById(R.id.cardListar);
+        cupom = findViewById(R.id.cardManageCupom);
     }
 
     private void abrirListarProduto() {
@@ -44,6 +47,11 @@ public class SellerHomePageActivity extends AppCompatActivity {
 
     private void abrirAtualizarProduto() {
         Intent intent = new Intent(SellerHomePageActivity.this, UpdateProductActivity.class);
+        startActivity(intent);
+    }
+
+    private void abrirGerenciarCupons() {
+        Intent intent = new Intent(SellerHomePageActivity.this, CupomActivity.class);
         startActivity(intent);
     }
 }

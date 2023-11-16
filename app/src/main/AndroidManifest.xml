@@ -49,6 +49,9 @@
             android:name=".activity.CheckoutActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.CupomActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
