@@ -15,6 +15,11 @@ public class CupomService {
         this.cupomPersistence = MyCustomApplication.getCupomPersistence();
     }
 
+    // Criado para fins de testes unitários
+    protected CupomService(CupomPersistence database) {
+        this.cupomPersistence = database;
+    }
+
     public Optional<Cupom> findCupom(String codigoCupom) {
         return cupomPersistence.findByCodigo(codigoCupom);
     }
