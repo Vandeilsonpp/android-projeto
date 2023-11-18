@@ -1,6 +1,7 @@
 package com.example.ultimavez.activity;
 
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -29,7 +30,7 @@ public class CupomActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.seller_home_page);
+        setContentView(R.layout.manage_cupom);
         getSupportActionBar().hide();
 
         inicializarComponentes();
@@ -45,6 +46,11 @@ public class CupomActivity extends AppCompatActivity {
         buscarCupom = findViewById(R.id.btnSearchUpdCupom);
         atualizarCupom = findViewById(R.id.btnUpdCupom);
         ativarCupom = findViewById(R.id.spActive);
+
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(
+                this, R.array.ativar, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        ativarCupom.setAdapter(adapter);
     }
 
     private void attCupom() {
@@ -62,7 +68,7 @@ public class CupomActivity extends AppCompatActivity {
     private Cupom buildFromInput() {
         String codigo = txtCodigoCupom.getText().toString();
         double valor = Double.parseDouble(txtValorCupom.getText().toString());
-        boolean ativado = Boolean.parseBoolean(ativarCupom.getSelectedItem().toString());
+        boolean ativado = ativarCupom.getSelectedItemId() == 0;
 
         return new Cupom(codigo, ativado, valor);
     }

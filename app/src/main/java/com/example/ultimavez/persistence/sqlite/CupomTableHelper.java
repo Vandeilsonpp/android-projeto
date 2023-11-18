@@ -63,7 +63,9 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
         contentValues.put(COLUMN_VALIDO, cupom.eValido());
         contentValues.put(COLUMN_VALOR, String.valueOf(cupom.getValorDoDesconto()));
 
-        long result = db.insert(TABLE_NAME, null, contentValues);
+        String whereClause = COLUMN_CODIGO + " = ?";
+        String[] whereArgs = {cupom.getCodigo()};
+        long result = db.update(TABLE_NAME, contentValues, whereClause, whereArgs);
 
         if (dbErrorHasHappened(result)) {
             return Result.invalid("Aconteceu um erro inesperado. Tente novamente mais tarde");
@@ -76,8 +78,8 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
         SQLiteDatabase db = this.getReadableDatabase();
         onCreate(db);
 
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CODIGO + " = ?" + " AND " + COLUMN_VALIDO + " = ?";
-        String[] selectionArgs = {codigo, "1"};
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CODIGO + " = ?";
+        String[] selectionArgs = {codigo};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);
 
