@@ -13,6 +13,12 @@ public class Cupom {
         this.valorDoDesconto = valorDoDesconto;
     }
 
+    public Cupom(String codigo, boolean eValido, double valorDoDesconto) {
+        this.codigo = codigo;
+        this.eValido = eValido;
+        this.valorDoDesconto = valorDoDesconto;
+    }
+
     public boolean eValido() {
         return eValido;
     }
