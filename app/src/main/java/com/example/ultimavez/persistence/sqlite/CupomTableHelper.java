@@ -100,6 +100,32 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
     }
 
     @Override
+    public Optional<Cupom> findActiveByCodigo(String codigo) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        onCreate(db);
+
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CODIGO + " = ?" + " AND " + COLUMN_VALIDO + " = ?";
+        String[] selectionArgs = {codigo, "1"};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        if (cursor.moveToFirst()) {
+            @SuppressLint("Range") Cupom cupom = new Cupom(
+                    cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
+                    cursor.getString(cursor.getColumnIndex(COLUMN_CODIGO)),
+                    cursor.getInt(cursor.getColumnIndex(COLUMN_VALIDO)) == 1,
+                    cursor.getDouble(cursor.getColumnIndex(COLUMN_VALOR))
+            );
+
+            cursor.close();
+            return Optional.of(cupom);
+        } else {
+            cursor.close();
+            return Optional.empty();
+        }
+    }
+
+    @Override
     public boolean existsByCodigo(String codigo) {
         SQLiteDatabase db = this.getReadableDatabase();
         onCreate(db);

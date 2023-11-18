@@ -11,5 +11,6 @@ public interface CupomPersistence {
 
     Result<Cupom> saveCupom(Cupom cupom);
     Optional<Cupom> findByCodigo(String codigo);
+    Optional<Cupom> findActiveByCodigo(String codigo);
     boolean existsByCodigo(String codigo);
 }
