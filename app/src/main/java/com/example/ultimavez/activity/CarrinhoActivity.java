@@ -19,7 +19,7 @@ import com.example.ultimavez.model.domain.Product;
 
 public class CarrinhoActivity extends AppCompatActivity {
 
-    private Button continueShopping, finishOrder;
+    private Button continueShopping, finishOrder, encomenda;
     private EditText total;
     private RecyclerView recyclerView;
     private CarrinhoAdapter adapter;
@@ -42,6 +42,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         renderSelectedProducts();
         continueShopping.setOnClickListener(it -> returnToListOfProducts());
         finishOrder.setOnClickListener(it -> proceedToCheckout());
+        encomenda.setOnClickListener(it -> proceedToEncomenda());
         adapter.setSubtractButtonClickListener(updatedProduct -> {
             updateTotalPrice();
         });
@@ -57,6 +58,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         continueShopping = findViewById(R.id.addMaisProdutos);
         finishOrder = findViewById(R.id.finalizarPedido);
         recyclerView = findViewById(R.id.carrinho_recycler_item_view);
+        encomenda = findViewById(R.id.encomenda);
     }
 
     private void renderSelectedProducts() {
@@ -75,6 +77,12 @@ public class CarrinhoActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CheckoutActivity.class);
         startActivity(intent);
     }
+
+    private void proceedToEncomenda() {
+        Intent intent = new Intent(this, EncomendaActivity.class);
+        startActivity(intent);
+    }
+
 
 
     @SuppressLint("SetTextI18n")
