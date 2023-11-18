@@ -16,6 +16,7 @@ import com.example.ultimavez.fragment.SuccessFragment;
 import com.example.ultimavez.helper.Notifications;
 import com.example.ultimavez.helper.Result;
 import com.example.ultimavez.model.domain.Carrinho;
+import com.example.ultimavez.model.domain.Cupom;
 import com.example.ultimavez.model.domain.Pedido;
 import com.example.ultimavez.model.enums.TiposPagamentoEnum;
 import com.example.ultimavez.service.PagamentoService;
@@ -79,13 +80,18 @@ public class CheckoutActivity extends AppCompatActivity {
 
     private void applyCupom() { // Testar Só Depois que implementar o Save de cupom por parte do seller
         String codigoCupom = cupom.getText().toString();
-        Result<Void> result = pedidoService.aplicarCupom(codigoCupom);
+        Result<Cupom> result = pedidoService.aplicarCupom(codigoCupom);
 
         if (!result.isValid()) {
             showErrors(result.getErrors());
         } else {
-            showSuccess("Cupom aplicado com sucesso", CheckoutActivity.class);
+            recalcularPreco(result.getResultObject());
         }
+    }
+
+    private void recalcularPreco(Cupom resultObject) {
+        pedido.setDesconto(resultObject.getValorDoDesconto());
+        buildResumoPedido();
     }
 
     private void realizarPagamento() {

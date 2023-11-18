@@ -28,7 +28,7 @@ public class PedidoService {
         return pedido;
     }
 
-    public Result<Void> aplicarCupom(String codigoCupom) {
+    public Result<Cupom> aplicarCupom(String codigoCupom) {
         if (pedido.temCupomAplicado()) {
             return Result.invalid("Já existe um cupom aplicado neste pedido");
         }
@@ -40,6 +40,6 @@ public class PedidoService {
 
         pedido.setCodigoCupom(result.get().getCodigo());
         pedido.setDesconto(result.get().getValorDoDesconto());
-        return Result.valid(null);
+        return Result.valid(result.get());
     }
 }

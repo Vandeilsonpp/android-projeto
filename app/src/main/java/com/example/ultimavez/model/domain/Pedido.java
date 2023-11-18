@@ -56,6 +56,11 @@ public class Pedido {
     }
 
     public void setValorFinal() {
+        if (this.desconto >= this.valorOriginal) {
+            this.valorFinal = 0;
+            this.desconto = this.valorOriginal;
+            return;
+        }
         this.valorFinal = this.valorOriginal - this.desconto;
 
     }
