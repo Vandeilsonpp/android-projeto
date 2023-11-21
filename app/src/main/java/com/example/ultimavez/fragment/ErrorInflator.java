@@ -1,12 +1,17 @@
 package com.example.ultimavez.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import com.example.ultimavez.R;
@@ -24,7 +29,18 @@ public class ErrorInflator {
         ListView errorMessages = dialogView.findViewById(R.id.errorMessages);
         Button okButton = dialogView.findViewById(R.id.okButton);
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_list_item_1, notifications);
+        // Use a custom layout for the ListView items
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context, android.R.layout.simple_list_item_1, notifications) {
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView textView = (TextView) view;
+                textView.setTextColor(Color.BLACK); // Set text color to black
+                return view;
+            }
+        };
+
         errorMessages.setAdapter(adapter);
 
         AlertDialog dialog = builder.create();
@@ -34,6 +50,7 @@ public class ErrorInflator {
 
         dialog.show();
     }
+
 
     public static void showErrors(String error, Context context) {
         List<String> errors = new ArrayList<>();

@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
 
         textView.setVisibility(View.VISIBLE);
 
-        new Handler().postDelayed(this::abrirAuth, 3000);
+        //new Handler().postDelayed(this::abrirAuth, 3000);
+        new Handler().postDelayed(this::abrirAuth, 1);
     }
 
     private void abrirAuth() {
