@@ -59,6 +59,7 @@
         android:textStyle="bold" />
 
     <EditText
+        android:textColor="@color/black"
         android:paddingStart="10dp"
         android:textColorHint="@color/grey"
         android:id="@+id/txtEmail"
@@ -86,6 +87,7 @@
         android:layout_marginBottom="4dp"/>
 
     <EditText
+        android:textColor="@color/black"
         android:paddingStart="10dp"
         android:textColorHint="@color/grey"
         android:id="@+id/txtPassword"

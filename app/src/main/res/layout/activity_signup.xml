@@ -98,6 +98,7 @@
                     <EditText
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
+                        android:textColor="@color/black"
                         android:id="@+id/txtEmail"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -134,6 +135,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
                         android:id="@+id/txtPassword"
@@ -172,6 +174,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
                         android:id="@+id/txtFullName"
@@ -209,6 +212,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
                         android:id="@+id/txtCpf"
@@ -246,6 +250,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
                         android:id="@+id/txtPhone"
@@ -283,6 +288,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
                         android:id="@+id/txtAddress"
@@ -320,6 +326,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
                         android:id="@+id/txtZipCode"
@@ -357,6 +364,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
                         android:id="@+id/txtCity"
