@@ -10,6 +10,8 @@
     tools:context=".activity.UpdateProductActivity">
 
     <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
         android:id="@+id/editTextProductNewName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -22,6 +24,8 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextProductSearchName" />
 
     <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
         android:id="@+id/editTextProductSearchName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -35,6 +39,8 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
         android:id="@+id/editTextNewDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -50,6 +56,8 @@
         app:layout_constraintTop_toBottomOf="@+id/editTextProductNewName" />
 
     <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
         android:id="@+id/editTextNewValue"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -110,6 +118,7 @@
         app:layout_constraintTop_toTopOf="@+id/btnNewSave" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -119,6 +128,7 @@
         app:layout_constraintStart_toStartOf="@+id/editTextProductNewName" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView8"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -128,6 +138,7 @@
         app:layout_constraintStart_toStartOf="@+id/editTextNewDescription" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -137,6 +148,7 @@
         app:layout_constraintStart_toStartOf="@+id/editTextNewValue" />
 
     <Spinner
+        android:background="@drawable/br_spinner"
         android:id="@+id/spNewCategoria"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
@@ -147,6 +159,7 @@
         app:layout_constraintVertical_bias="0.476" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -170,6 +183,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -194,6 +208,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:textColor="@color/black"
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

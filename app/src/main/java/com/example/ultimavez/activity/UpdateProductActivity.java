@@ -149,6 +149,7 @@ public class UpdateProductActivity extends AppCompatActivity {
     }
 
     private void updateProduct() {
+        // TODO: Foto não está atualizando
         if (productToBeUpdated == null) {
             return;
         }
