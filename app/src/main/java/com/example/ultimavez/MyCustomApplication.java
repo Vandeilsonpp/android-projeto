@@ -48,7 +48,7 @@ public class MyCustomApplication extends Application {
 
         // Popular banco de dados com dados reais
         seeds = new SeedsHelper(this);
-        seeds.createSeeds();
+        //seeds.createSeeds();
     }
 
     public static UserPersistence getUserPersistence() {
