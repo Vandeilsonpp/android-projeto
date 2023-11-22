@@ -65,7 +65,12 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
 
         String whereClause = COLUMN_CODIGO + " = ?";
         String[] whereArgs = {cupom.getCodigo()};
-        long result = db.update(TABLE_NAME, contentValues, whereClause, whereArgs);
+        long result;
+        if (findByCodigo(cupom.getCodigo()).isPresent()) {
+            result = db.update(TABLE_NAME, contentValues, whereClause, whereArgs);
+        } else {
+            result = db.insert(TABLE_NAME, null, contentValues);
+        }
 
         if (dbErrorHasHappened(result)) {
             return Result.invalid("Aconteceu um erro inesperado. Tente novamente mais tarde");
