@@ -32,16 +32,18 @@ public class SeedsHelper {
     }
 
     public void createSeeds() {
-        saveUsers();
-        saveProducts();
-        saveCupons();
+        if (!user.existsByEmail("lucas.pereira@gmail.com") && !product.existsByName("Limão e Coco")) {
+            saveUsers();
+            saveProducts();
+            saveCupons();
+        }
     }
 
     private void saveUsers() {
-        user.saveUser(new User(UserEnum.CUSTOMER, "luciana.alves@hotmail.com", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b", "Luciana Alves da Silva", "434.323.656.87", "(11)98765-4321", "Avenida Paulista, 2000", "09876-543", "São Paulo", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b"));
-        user.saveUser(new User(UserEnum.CUSTOMER, "lucas.pereira@gmail.com", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b", "Lucas Moraes Pereira", "412.893.818-92", "(11)97654-7890", "Avenida Brasil, 345", "09354-221", "Goiânia", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b"));
         user.saveUser(new User(UserEnum.SELLER, "aline.barbosa@gmail.com", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b", "Alive Batista", "122.323.765-55", "(11)94321-5678", "Rua Marechal Deodoro, 1287", "09123-345", "São Bernardo do Campo", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b"));
         user.saveUser(new User(UserEnum.SELLER, "jose.matos@gmail.com", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b", "José Garcia Matos", "987.492.312-90", "(11)91234-5098", "Rua dos Feltrins, 21", "03424-096", "Guarulhos", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b"));
+        user.saveUser(new User(UserEnum.CUSTOMER, "luciana.alves@hotmail.com", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b", "Luciana Alves da Silva", "434.323.656.87", "(11)98765-4321", "Avenida Paulista, 2000", "09876-543", "São Paulo", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b"));
+        user.saveUser(new User(UserEnum.CUSTOMER, "lucas.pereira@gmail.com", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b", "Lucas Moraes Pereira", "412.893.818-92", "(11)97654-7890", "Avenida Brasil, 345", "09354-221", "Goiânia", "0cef1fb1-0f60-3290-a8a7-1f58e54ed07b"));
     }
 
     private void saveProducts() {

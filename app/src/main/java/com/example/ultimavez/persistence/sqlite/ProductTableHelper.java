@@ -99,7 +99,7 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
     public Optional<Product> findByName(String productName) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = ?";
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = ?" + " COLLATE NOCASE";
         String[] selectionArgs = {productName};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);

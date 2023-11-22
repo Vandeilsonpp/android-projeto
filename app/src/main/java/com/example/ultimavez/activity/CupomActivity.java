@@ -54,7 +54,6 @@ public class CupomActivity extends AppCompatActivity {
     }
 
     private void attCupom() {
-        // TODO: Verificar por null antes
         Cupom cupomAtualizado = buildFromInput();
 
         Result<Cupom> result = cupomService.attCupom(cupomAtualizado);
