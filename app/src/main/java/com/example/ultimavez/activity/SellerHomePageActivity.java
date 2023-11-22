@@ -54,4 +54,9 @@ public class SellerHomePageActivity extends AppCompatActivity {
         Intent intent = new Intent(SellerHomePageActivity.this, CupomActivity.class);
         startActivity(intent);
     }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
 }

@@ -43,4 +43,9 @@ public class CustomerHomePageActivity extends AppCompatActivity {
         cHistoria = findViewById(R.id.cardOurHistory);
     }
 
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
+    }
+
 }
