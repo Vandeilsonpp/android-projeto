@@ -11,7 +11,7 @@ import com.example.ultimavez.model.domain.Cupom;
 
 public class SellerHomePageActivity extends AppCompatActivity {
 
-    private CardView cadastrar, atualizar, listar, cupom;
+    private CardView cadastrar, atualizar, listar, cupom, deslogar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class SellerHomePageActivity extends AppCompatActivity {
         atualizar.setOnClickListener(it -> abrirAtualizarProduto());
         listar.setOnClickListener(it -> abrirListarProduto());
         cupom.setOnClickListener(it -> abrirGerenciarCupons());
+        deslogar.setOnClickListener(it -> deslogar());
     }
 
     private void inicializarComponentes() {
@@ -32,6 +33,12 @@ public class SellerHomePageActivity extends AppCompatActivity {
         atualizar = findViewById(R.id.cardAtualizar);
         listar = findViewById(R.id.cardListar);
         cupom = findViewById(R.id.cardManageCupom);
+        deslogar = findViewById(R.id.cardDeslogarSeller);
+    }
+
+    private void deslogar() {
+        Intent intent = new Intent(this, AuthActivity.class);
+        startActivity(intent);
     }
 
     private void abrirListarProduto() {

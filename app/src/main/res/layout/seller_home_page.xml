@@ -260,6 +260,41 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardDeslogarSeller"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="18dp">
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="90dp"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- Customizable Image -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="8dp"
+                        app:srcCompat="@drawable/historico" />
+
+                    <!-- Customizable Text -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="Deslogar"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
 
         </LinearLayout>
 
