@@ -22,6 +22,7 @@ import com.example.ultimavez.model.enums.TiposPagamentoEnum;
 import com.example.ultimavez.service.PagamentoService;
 import com.example.ultimavez.service.PedidoService;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class CheckoutActivity extends AppCompatActivity {
@@ -35,6 +36,7 @@ public class CheckoutActivity extends AppCompatActivity {
     private RadioGroup tiposDePagamento;
     SharedPreferences sharedPreferences;
     private TiposPagamentoEnum tiposPagamentoEnum;
+    private DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,9 +75,9 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void buildResumoPedido() {
-        valor.setText(String.valueOf(pedido.getValorOriginal()));
+        valor.setText(decimalFormat.format(pedido.getValorOriginal()));
         desconto.setText(String.valueOf(pedido.getDesconto()));
-        valorTotal.setText(String.valueOf(pedido.getValorFinal()));
+        valorTotal.setText(decimalFormat.format(pedido.getValorFinal()));
     }
 
     private void applyCupom() { // Testar Só Depois que implementar o Save de cupom por parte do seller

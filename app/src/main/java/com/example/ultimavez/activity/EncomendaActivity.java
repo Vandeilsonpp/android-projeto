@@ -16,6 +16,7 @@ import com.example.ultimavez.model.domain.Carrinho;
 import com.example.ultimavez.model.domain.Encomenda;
 import com.example.ultimavez.service.EncomendaService;
 
+import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class EncomendaActivity extends AppCompatActivity {
     private Encomenda encomenda;
     private EncomendaService service = new EncomendaService();
     SharedPreferences sharedPreferences;
+    private DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +59,10 @@ public class EncomendaActivity extends AppCompatActivity {
     }
 
     private void buildEncomenda() {
-        valor.setText(String.valueOf(encomenda.getValor()));
+        valor.setText(decimalFormat.format(encomenda.getValor()));
         quantidade.setText(String.valueOf(encomenda.getQuantidade()));
-        desconto.setText(String.valueOf(encomenda.getDesconto()));
-        total.setText(String.valueOf(encomenda.getValorFinal()));
+        desconto.setText(decimalFormat.format(encomenda.getDesconto()));
+        total.setText(decimalFormat.format(encomenda.getValorFinal()));
     }
 
     private void salvarEncomenda() {

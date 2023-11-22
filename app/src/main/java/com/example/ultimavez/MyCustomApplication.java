@@ -2,6 +2,7 @@ package com.example.ultimavez;
 
 import android.app.Application;
 
+import com.example.ultimavez.helper.SeedsHelper;
 import com.example.ultimavez.model.domain.Carrinho;
 import com.example.ultimavez.model.domain.Pedido;
 import com.example.ultimavez.model.domain.Product;
@@ -30,8 +31,7 @@ public class MyCustomApplication extends Application {
     private static List<Product> selectedProducts;
     private static Carrinho carrinho;
     private static Pedido pedido;
-
-
+    private static SeedsHelper seeds;
 
     @Override
     public void onCreate() {
@@ -45,6 +45,10 @@ public class MyCustomApplication extends Application {
         selectedProducts = new ArrayList<>();
         carrinho = new Carrinho();
         pedido = new Pedido();
+
+        // Popular banco de dados com dados reais
+        seeds = new SeedsHelper(this);
+        seeds.createSeeds();
     }
 
     public static UserPersistence getUserPersistence() {

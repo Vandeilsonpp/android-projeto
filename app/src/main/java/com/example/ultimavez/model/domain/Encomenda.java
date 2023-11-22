@@ -34,7 +34,7 @@ public class Encomenda {
       } else if (this.quantidade > 25) {
          return this.valor * 0.15;
       } else {
-         return this.valor;
+         return 0;
       }
    }
 

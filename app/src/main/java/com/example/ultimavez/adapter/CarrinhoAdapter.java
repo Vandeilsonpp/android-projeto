@@ -21,6 +21,7 @@ import com.example.ultimavez.R;
 import com.example.ultimavez.model.domain.Carrinho;
 import com.example.ultimavez.model.domain.Product;
 
+import java.text.DecimalFormat;
 import java.util.List;
 
 public class CarrinhoAdapter extends RecyclerView.Adapter<CarrinhoAdapter.ProductViewHolder> {

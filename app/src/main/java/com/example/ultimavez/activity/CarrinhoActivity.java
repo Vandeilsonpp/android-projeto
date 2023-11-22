@@ -16,6 +16,8 @@ import com.example.ultimavez.adapter.CarrinhoAdapter;
 import com.example.ultimavez.model.domain.Carrinho;
 import com.example.ultimavez.model.domain.Product;
 
+import java.text.DecimalFormat;
+
 
 public class CarrinhoActivity extends AppCompatActivity {
 
@@ -24,6 +26,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private CarrinhoAdapter adapter;
     private Carrinho carrinho = MyCustomApplication.getCarrinho();
+    private DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -88,7 +91,7 @@ public class CarrinhoActivity extends AppCompatActivity {
     @SuppressLint("SetTextI18n")
     private void updateTotalPrice() {
         double totalPrice = carrinho.calculateTotalPrice();
-        total.setText("R$ " + totalPrice);
+        total.setText("R$ " + decimalFormat.format(totalPrice));
     }
 
 }
