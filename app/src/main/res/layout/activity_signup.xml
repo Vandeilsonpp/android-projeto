@@ -162,6 +162,45 @@
                     android:layout_marginStart="16dp"
                     android:gravity="center_vertical"
                     android:minHeight="36dp"
+                    android:text="Repetir Senha"
+                    android:textStyle="bold" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginEnd="20dp"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical">
+
+                    <EditText
+                        android:textColor="@color/black"
+                        android:paddingStart="10dp"
+                        android:textColorHint="@color/grey"
+                        android:id="@+id/txtPasswordAgain"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:background="@drawable/bg_edit_text"
+                        android:hint="min. 8 caracteres"
+                        android:inputType="textPassword"
+                        android:minHeight="36dp" />
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="12dp">
+
+                <TextView
+                    android:textColor="@color/black"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="16dp"
+                    android:gravity="center_vertical"
+                    android:minHeight="36dp"
                     android:text="Nome"
                     android:textStyle="bold" />
 

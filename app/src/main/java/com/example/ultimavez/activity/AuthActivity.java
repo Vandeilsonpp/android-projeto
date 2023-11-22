@@ -35,18 +35,8 @@ public class AuthActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
 
         btnAcessar.setOnClickListener(it -> realizarLogin());
-        //btnAcessar.setOnClickListener(it -> realizarLoginByPass());
         btnCadastro.setOnClickListener(view -> abrirCadastro());
         btnRedefinirSenha.setOnClickListener(view -> abrirRedefinirSenha());
-    }
-
-    private void realizarLoginByPass() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong("userId", 5);
-        editor.apply();
-
-        Intent intent = new Intent(AuthActivity.this, SellerHomePageActivity.class);
-        startActivity(intent);
     }
 
     private void realizarLogin() {

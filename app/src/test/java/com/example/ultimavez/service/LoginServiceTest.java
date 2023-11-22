@@ -32,7 +32,7 @@ public class LoginServiceTest {
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        genericUser = new User(UserEnum.CUSTOMER, "email@gmail.com", "password", "Fulano da Silva", "123.456.789-90", "(11)91234-5678", "Rua das vitórias, 765", "09876-543", "São Paulo");
+        genericUser = new User(UserEnum.CUSTOMER, "email@gmail.com", "password", "Fulano da Silva", "123.456.789-90", "(11)91234-5678", "Rua das vitórias, 765", "09876-543", "São Paulo", "password");
     }
 
     @Test

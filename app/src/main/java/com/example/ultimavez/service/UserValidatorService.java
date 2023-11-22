@@ -19,7 +19,7 @@ public class UserValidatorService {
 
         verifyNullValues(user, result);
         verifyMasks(user, result);
-        verifyPassword(user.getPassword(), result);
+        verifyPassword(user.getPassword(), user.getPasswordAgain(), result);
 
         return result;
     }
@@ -31,6 +31,10 @@ public class UserValidatorService {
 
         if (isEmpty(user.getPassword())) {
             result.addError("Senha é obrigatório");
+        }
+
+        if (isEmpty(user.getPasswordAgain())) {
+            result.addError("Repetição de senha é obrigatória");
         }
 
         if (isEmpty(user.getFullName())) {
@@ -87,9 +91,14 @@ public class UserValidatorService {
     }
 
 
-    private void verifyPassword(String password, Result<User> result) {
+    private void verifyPassword(String password, String passwordAgain, Result<User> result) {
         if (password.length() < MINIMUM_PASSWORD_LENGTH) {
             result.addError("Senha deve ter pelo menos 8 caracteres");
+        }
+
+        if (!password.equals(passwordAgain)) {
+            result.addError("As senhas são diferentes");
+
         }
 
         boolean hasUppercase = false;
