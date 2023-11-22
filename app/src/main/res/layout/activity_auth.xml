@@ -13,7 +13,7 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginTop="-220dp"
+        android:layout_marginTop="-180dp"
         android:layout_gravity="center">
 
         <ImageView
@@ -144,44 +144,49 @@
         android:layout_marginRight="12dp"
         android:layout_marginBottom="16dp" />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_marginTop="20dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="20dp">
 
         <Button
             android:id="@+id/btnLogin"
-            android:layout_width="160dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="30dp"
-            android:layout_marginRight="16dp"
             android:padding="16dp"
             android:text="Acessar"
             android:textColor="#FFFFFF"
             app:backgroundTint="@color/black"
             app:cornerRadius="20dp"
-            app:elevation="5dp" />
+            app:elevation="5dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15
+"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/btnSignup"
-            android:layout_width="160dp"
+            android:layout_width="130dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginRight="16dp"
             android:padding="16dp"
             android:text="Cadastrar"
             android:textColor="#FFFFFF"
             app:backgroundTint="@color/strong_pink"
-            app:cornerRadius="20dp" />
-    </LinearLayout>
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <Button
         android:id="@+id/btnForgotPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginRight="16dp"
         android:padding="5dp"
         android:text="Esqueci minha senha"
         android:textColor="#FFFFFF"

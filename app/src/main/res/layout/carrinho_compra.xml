@@ -11,7 +11,7 @@
     tools:context=".activity.CarrinhoActivity">
 
     <LinearLayout
-        android:layout_marginTop="-50dp"
+        android:layout_marginTop="-20dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -71,44 +71,66 @@
     </ScrollView>
 
 
-    <LinearLayout
-        android:gravity="start"
-        android:padding="16dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="80dp"
         android:layout_marginStart="10dp"
-        android:orientation="horizontal">
+        android:layout_marginTop="10dp"
+        android:gravity="start">
 
         <TextView
-            android:textColor="@color/black"
+            android:id="@+id/textView13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:layout_marginEnd="5dp"
+            android:layout_marginEnd="21dp"
             android:gravity="center_vertical"
             android:text="Total"
+            android:textColor="@color/black"
             android:textSize="18sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/txtCarrinhoTotal"
+            app:layout_constraintHorizontal_bias="0.44"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:textColor="@color/black"
-            android:textColorHint="@color/grey"
-            android:inputType="none"
-            android:paddingStart="20dp"
-            android:paddingEnd="20dp"
-            android:layout_marginStart="16dp"
             android:id="@+id/txtCarrinhoTotal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
+            android:layout_marginStart="16dp"
             android:background="@drawable/bg_edit_text"
             android:hint="R$ 0,00"
-            android:minHeight="36dp" />
+            android:inputType="none"
+            android:minHeight="36dp"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/grey"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView13"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        <Button
+            android:id="@+id/finalizarPedido"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:text="Finalizar Pedido"
+            android:textColor="#FFFFFF"
+            app:backgroundTint="@color/strong_pink"
+            app:cornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toEndOf="@+id/txtCarrinhoTotal"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <LinearLayout
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginTop="10dp"
@@ -116,40 +138,32 @@
 
         <Button
             android:id="@+id/addMaisProdutos"
-            android:layout_width="130dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="5dp"
             android:padding="10dp"
             android:text="Continuar Comprando"
             android:textColor="#FFFFFF"
             app:backgroundTint="@color/teal_700"
             app:cornerRadius="20dp"
-            app:elevation="5dp" />
-
-        <Button
-            android:id="@+id/finalizarPedido"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp"
-            android:padding="10dp"
-            android:text="Finalizar Pedido"
-            android:textColor="#FFFFFF"
-            app:backgroundTint="@color/strong_pink"
-            app:cornerRadius="20dp" />
+            app:elevation="5dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.85"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/encomenda"
-            android:layout_width="120dp"
+            android:layout_width="140dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginRight="10dp"
             android:padding="10dp"
             android:text="Fazer encomenda"
             android:textColor="#FFFFFF"
             app:backgroundTint="@color/black"
-            app:cornerRadius="20dp" />
-    </LinearLayout>
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>
