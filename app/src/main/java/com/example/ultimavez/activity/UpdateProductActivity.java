@@ -2,6 +2,7 @@ package com.example.ultimavez.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
@@ -45,6 +46,7 @@ public class UpdateProductActivity extends AppCompatActivity {
     private static final int IMAGE_PICKER_REQUEST = 1;
     private final ProductService productService = new ProductService();
     private Product productToBeUpdated;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +55,8 @@ public class UpdateProductActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         inicializarComponentes();
-        
+        sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+
         btnSearch.setOnClickListener(it -> findProduct());
         btnSelectImage.setOnClickListener(it -> selectImage());
         btnSave.setOnClickListener(it -> updateProduct());
@@ -80,8 +83,9 @@ public class UpdateProductActivity extends AppCompatActivity {
 
     private void findProduct() {
         String productName = searchedProduct.getText().toString().toLowerCase(Locale.ROOT);
-        
-        Optional<Product> foundProduct = productService.findProduct(productName);
+        long sellerId = sharedPreferences.getLong("userId", 0);
+
+        Optional<Product> foundProduct = productService.findProduct(productName, sellerId);
         if (!foundProduct.isPresent()) {
             ErrorInflator.showErrors("Produto não encontrado", this);
         } else {
