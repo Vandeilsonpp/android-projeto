@@ -130,6 +130,7 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
         cv.put(COLUMN_CATEGORY, newProduct.getCategory().toString());
         cv.put(COLUMN_DESCRIPTION, newProduct.getDescription());
         cv.put(COLUMN_PRICE, newProduct.getPrice());
+        cv.put(COLUMN_IMAGE, newProduct.getImage());
 
         long result = db.update(TABLE_NAME, cv, "id = ?", new String[] {String.valueOf(newProduct.getId())});
 

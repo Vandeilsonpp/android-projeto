@@ -87,12 +87,12 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            app:srcCompat="@drawable/logo" />
+            app:srcCompat="@drawable/rounded_pink_background" />
     </androidx.cardview.widget.CardView>
 
     <Button
         android:id="@+id/btnNewSave"
-        android:layout_width="160dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
@@ -106,7 +106,7 @@
 
     <Button
         android:id="@+id/btnDelete"
-        android:layout_width="160dp"
+        android:layout_width="120dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Deletar"
