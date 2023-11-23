@@ -53,7 +53,7 @@
             android:gravity="center"
             android:text="Cadastro"
             android:textColor="#000000"
-            android:textSize="60sp"
+            android:textSize="36sp"
             android:textStyle="bold" />
 
     </LinearLayout>
@@ -152,7 +152,7 @@
             <TableRow
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="-8dp">
 
                 <TextView
                     android:textColor="@color/black"
@@ -185,6 +185,33 @@
                         android:hint="min. 8 caracteres"
                         android:inputType="textPassword"
                         android:minHeight="36dp" />
+
+
+                </LinearLayout>
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="16dp"
+                    android:layout_weight="1"
+                    android:gravity="end">
+
+                    <CheckBox
+                        android:id="@+id/checkBoxShowPasswordSignUp"
+                        android:textColor="@color/black"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Ver senha"
+                        android:layout_marginEnd="16dp"
+                        android:layout_gravity="end"/>
+
+
                 </LinearLayout>
             </TableRow>
 

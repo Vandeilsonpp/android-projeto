@@ -2,8 +2,10 @@ package com.example.ultimavez.activity;
 
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -26,6 +28,7 @@ public class SignUpActivity extends AppCompatActivity {
     private EditText txtEmail, txtPassword, txtFullName, txtCpf, txtPhone, txtAddress, txtZipCode, txtCity, txtSenhaNovamente;
     private Button btnSignup;
     private Switch userTypeSwitch;
+    private CheckBox verSenhas;
 
     private final UserService userService = new UserService();
 
@@ -42,6 +45,14 @@ public class SignUpActivity extends AppCompatActivity {
         txtPhone.addTextChangedListener(formatPhoneNumber());
         txtCpf.addTextChangedListener(formatDocument());
         txtZipCode.addTextChangedListener(formatCep());
+        verSenhas.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            int inputType = isChecked ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD;
+            txtPassword.setInputType(inputType);
+            txtPassword.setSelection(txtPassword.length());
+            txtSenhaNovamente.setInputType(inputType);
+            txtSenhaNovamente.setSelection(txtPassword.length());
+        });
 
     }
 
@@ -161,6 +172,7 @@ public class SignUpActivity extends AppCompatActivity {
         btnSignup = findViewById(R.id.btnSign);
         userTypeSwitch = findViewById(R.id.switchAcesso);
         txtSenhaNovamente = findViewById(R.id.txtPasswordAgain);
+        verSenhas = findViewById(R.id.checkBoxShowPasswordSignUp);
     }
 
     private void saveUser() {
