@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_white"
+    android:padding="16dp"
+
+    tools:context=".activity.CupomActivity">
+
+    <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:id="@+id/editTextCupomCod"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/bg_edit_text"
+        android:hint="Somente se for criar um novo"
+        android:padding="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCupomSearchName" />
+
+    <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:id="@+id/editTextCupomSearchName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
+        android:background="@drawable/bg_edit_text"
+        android:hint="ASDFGHJKIUYTRE"
+        android:padding="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnSearchUpdCupom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
+    <EditText
+        android:textColor="@color/black"
+        android:textColorHint="@color/grey"
+        android:id="@+id/editTextNewCupomValue"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="24dp"
+        android:background="@drawable/bg_edit_text"
+        android:hint="Valor"
+        android:padding="8dp"
+        app:layout_constraintEnd_toStartOf="@+id/spActive"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextCupomCod" />
+
+
+    <Button
+        android:id="@+id/btnUpdCupom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Atualizar"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@color/black"
+        app:cornerRadius="20dp"
+        app:elevation="5dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNewCupomValue" />
+
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="Código"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCupomCod"
+        app:layout_constraintStart_toStartOf="@+id/editTextCupomCod" />
+
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="Valor"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNewCupomValue"
+        app:layout_constraintStart_toStartOf="@+id/editTextNewCupomValue" />
+
+    <Spinner
+        android:background="@drawable/br_spinner"
+        android:id="@+id/spActive"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextNewCupomValue"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextNewCupomValue"
+        app:layout_constraintVertical_bias="0.476" />
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Ativo?"
+        app:layout_constraintBottom_toTopOf="@+id/spActive"
+        app:layout_constraintStart_toStartOf="@+id/spActive" />
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="casual"
+        android:text="Gerenciar Cupom"
+        android:textColor="#000000"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:textColor="@color/black"
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="2dp"
+        android:text="Cupom a ser atualizado"
+        app:layout_constraintBottom_toTopOf="@+id/editTextCupomSearchName"
+        app:layout_constraintStart_toStartOf="@+id/editTextCupomSearchName" />
+
+    <Button
+        android:id="@+id/btnSearchUpdCupom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Buscar"
+        android:textColor="#FFFFFF"
+        app:backgroundTint="@color/strong_pink"
+        app:layout_constraintBottom_toBottomOf="@+id/editTextCupomSearchName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/editTextCupomSearchName" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

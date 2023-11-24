@@ -74,13 +74,11 @@ public class PedidoFactory {
 
     public Pedido build() {
         Pedido pedido = new Pedido();
-        pedido.setListaDeProdutos(listaDeProdutos);
         pedido.setIdComprador(idComprador);
         pedido.setStatus(status);
         pedido.setValorOriginal(valorOriginal);
         pedido.setDesconto(desconto);
         pedido.setCriadoEm(criadoEm);
-        pedido.setCupom(cupom);
         return pedido;
     }
 

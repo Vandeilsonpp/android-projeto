@@ -21,10 +21,10 @@ public class UserValidationServiceTest {
 
     @Test
     public void userWithMissingDataShouldHaveErrorInValidation() {
-        User testUser = new User(UserEnum.CUSTOMER, "", "", "", "", "", "", "", "");
+        User testUser = new User(UserEnum.CUSTOMER, "", "", "", "", "", "", "", "", "");
         Result<User> result = validatorService.validateUser(testUser);
 
-        assertEquals(14, result.getErrors().size());
+        assertEquals(15, result.getErrors().size());
     }
 
     @Test
@@ -34,6 +34,16 @@ public class UserValidationServiceTest {
 
         assertEquals(1, result.getErrors().size());
         assertEquals("CPF inválido", result.getErrors().get(0));
+    }
+
+    @Test
+    public void userWithDivergentPasswordShouldReturnError() {
+        validCustomer.withPassword("Password1!");
+        validCustomer.withPasswordAgain("Password2!");
+        Result<User> result = validatorService.validateUser(validCustomer.build());
+
+        assertEquals(1, result.getErrors().size());
+        assertEquals("As senhas são diferentes", result.getErrors().get(0));
     }
 
     @Test
@@ -79,6 +89,7 @@ public class UserValidationServiceTest {
     })
     public void testPasswordValidation(String password, boolean expected) {
         validCustomer.withPassword(password);
+        validCustomer.withPasswordAgain(password);
 
         Result<User> result = validatorService.validateUser(validCustomer.build());
         assertEquals(expected, result.isValid());

@@ -2,10 +2,13 @@ package com.example.ultimavez.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -43,6 +46,7 @@ public class UpdateProductActivity extends AppCompatActivity {
     private static final int IMAGE_PICKER_REQUEST = 1;
     private final ProductService productService = new ProductService();
     private Product productToBeUpdated;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +55,8 @@ public class UpdateProductActivity extends AppCompatActivity {
         getSupportActionBar().hide();
 
         inicializarComponentes();
-        
+        sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
+
         btnSearch.setOnClickListener(it -> findProduct());
         btnSelectImage.setOnClickListener(it -> selectImage());
         btnSave.setOnClickListener(it -> updateProduct());
@@ -78,8 +83,9 @@ public class UpdateProductActivity extends AppCompatActivity {
 
     private void findProduct() {
         String productName = searchedProduct.getText().toString().toLowerCase(Locale.ROOT);
-        
-        Optional<Product> foundProduct = productService.findProduct(productName);
+        long sellerId = sharedPreferences.getLong("userId", 0);
+
+        Optional<Product> foundProduct = productService.findProduct(productName, sellerId);
         if (!foundProduct.isPresent()) {
             ErrorInflator.showErrors("Produto não encontrado", this);
         } else {
@@ -139,8 +145,24 @@ public class UpdateProductActivity extends AppCompatActivity {
                 Uri selectedImage = data.getData();
                 try {
                     InputStream inputStream = getContentResolver().openInputStream(selectedImage);
-                    Bitmap bitmap = BitmapFactory.decodeStream(inputStream);
-                    productImage.setImageBitmap(bitmap);
+                    ExifInterface exif = new ExifInterface(inputStream);
+
+                    int orientation = exif.getAttributeInt(
+                            ExifInterface.TAG_ORIENTATION,
+                            ExifInterface.ORIENTATION_UNDEFINED);
+
+                    InputStream rotatedInputStream = getContentResolver().openInputStream(selectedImage);
+                    Bitmap bitmap = BitmapFactory.decodeStream(rotatedInputStream);
+
+                    Matrix matrix = new Matrix();
+                    matrix.postRotate(getRotationDegrees(orientation));
+
+                    Bitmap rotatedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+
+                    productImage.setImageBitmap(rotatedBitmap);
+
+                    inputStream.close();
+                    rotatedInputStream.close();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -148,7 +170,22 @@ public class UpdateProductActivity extends AppCompatActivity {
         }
     }
 
+    private float getRotationDegrees(int orientation) {
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_ROTATE_90:
+                return 90f;
+            case ExifInterface.ORIENTATION_ROTATE_180:
+                return 180f;
+            case ExifInterface.ORIENTATION_ROTATE_270:
+                return 270f;
+            default:
+                return 0f;
+        }
+    }
+
+
     private void updateProduct() {
+        // TODO: Foto não está atualizando
         if (productToBeUpdated == null) {
             return;
         }

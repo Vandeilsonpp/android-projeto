@@ -13,10 +13,6 @@ public class LoginService {
 
     private final UserPersistence database;
 
-    //public LoginService(Context context) {
-      //  this.database = new UserTableHelper(context);
-    //}
-
     public LoginService() {
         this.database = MyCustomApplication.getUserPersistence();
     }

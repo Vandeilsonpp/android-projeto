@@ -32,7 +32,7 @@ public class UserTableHelper extends SQLiteOpenHelper implements UserPersistence
     public static final String CITY = "city";
 
     private static final String CREATE_USERS_TABLE =
-            "CREATE TABLE " + TABLE_NAME + " (" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_TYPE + " TEXT CHECK(" + COLUMN_TYPE + " IN ('CUSTOMER', 'SELLER')) NOT NULL, " +
                     COLUMN_FULLNAME + " TEXT NOT NULL, " +

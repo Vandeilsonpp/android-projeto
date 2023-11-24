@@ -13,8 +13,9 @@ public class UserFactory {
     private String address;
     private String zipCode;
     private String city;
+    private String passwordAgain;
 
-    private UserFactory(UserEnum type, String email, String password, String fullName, String document, String phoneNumber, String address, String zipCode, String city) {
+    private UserFactory(UserEnum type, String email, String password, String fullName, String document, String phoneNumber, String address, String zipCode, String city, String passwordAgain) {
         this.type = type;
         this.email = email;
         this.password = password;
@@ -24,6 +25,7 @@ public class UserFactory {
         this.address = address;
         this.zipCode = zipCode;
         this.city = city;
+        this.passwordAgain = passwordAgain;
     }
 
     public static UserFactory validCustomer() {
@@ -36,7 +38,8 @@ public class UserFactory {
                 "(11)98765-4321",
                 "Avenida Paulista, 1000",
                 "09876-543",
-                "São Paulo"
+                "São Paulo",
+                "Password1!"
         );
     }
 
@@ -85,8 +88,13 @@ public class UserFactory {
         return this;
     }
 
+    public UserFactory withPasswordAgain(String passwordAgain) {
+        this.passwordAgain = passwordAgain;
+        return this;
+    }
+
     public User build() {
-        return new User(type, email, password, fullName, document, phoneNumber, address, zipCode, city);
+        return new User(type, email, password, fullName, document, phoneNumber, address, zipCode, city, passwordAgain);
     }
 }
 

@@ -7,6 +7,7 @@ import static org.junit.Assert.assertTrue;
 import com.example.ultimavez.factories.ProductFactory;
 import com.example.ultimavez.helper.Result;
 import com.example.ultimavez.model.domain.Product;
+import com.example.ultimavez.model.enums.CategoryEnum;
 import com.example.ultimavez.persistence.ProductPersistence;
 
 import org.junit.Before;
@@ -16,6 +17,10 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 import junitparams.JUnitParamsRunner;
 import junitparams.Parameters;
@@ -136,7 +141,51 @@ public class ProductServiceTest {
         assertFalse(result.isValid());
     }
 
-    // ----------- DELETE ----------
+    @Test
+    public void whenGetAllProducts_shouldReturnListOfProducts() {
+        List<Product> productList = new ArrayList<>();
+        productList.add(genericProduct.build());
+        productList.add(genericProduct.build());
 
+        Mockito.when(database.findAllProducts(1)).thenReturn(Optional.of(productList));
+
+        Result<List<Product>> result = productService.getAllProducts(1);
+        assertTrue(result.isValid());
+        assertEquals(2, result.getResultObject().size());
+    }
+
+    @Test
+    public void whenGetAllProducts_shouldReturnEmptyList() {
+        Mockito.when(database.findAllProducts(1)).thenReturn(Optional.empty());
+
+        Result<List<Product>> result = productService.getAllProducts(1);
+        assertFalse(result.isValid());
+        assertEquals("Não há produtos cadastrados", result.getErrors().get(0));
+    }
+
+    @Test
+    public void whenGetByCategory_shouldReturnProduct() {
+        Product product = genericProduct
+                .withCategory(CategoryEnum.PREMIUM)
+                .build();
+
+        List<Product> productList = new ArrayList<>();
+        productList.add(product);
+
+        Mockito.when(database.findProductByCategory(CategoryEnum.valueOf("PREMIUM"))).thenReturn(Optional.of(productList));
+
+        Result<List<Product>> result = productService.getProductByCategory("PREMIUM");
+        assertTrue(result.isValid());
+    }
+
+    @Test
+    public void whenGetByCategory_shouldNotReturnProduct() {
+        Mockito.when(database.findProductByCategory(CategoryEnum.valueOf("PREMIUM"))).thenReturn(Optional.empty());
+
+        Result<List<Product>> result = productService.getProductByCategory("PREMIUM");
+        assertFalse(result.isValid());
+        assertEquals("Não há produtos cadastrados nesta categoria", result.getErrors().get(0));
+
+    }
 
 }

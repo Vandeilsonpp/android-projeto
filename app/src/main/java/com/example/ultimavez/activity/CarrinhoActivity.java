@@ -16,14 +16,17 @@ import com.example.ultimavez.adapter.CarrinhoAdapter;
 import com.example.ultimavez.model.domain.Carrinho;
 import com.example.ultimavez.model.domain.Product;
 
+import java.text.DecimalFormat;
+
 
 public class CarrinhoActivity extends AppCompatActivity {
 
-    private Button continueShopping, finishOrder;
+    private Button continueShopping, finishOrder, encomenda;
     private EditText total;
     private RecyclerView recyclerView;
     private CarrinhoAdapter adapter;
     private Carrinho carrinho = MyCustomApplication.getCarrinho();
+    private DecimalFormat decimalFormat = new DecimalFormat("0.00");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         renderSelectedProducts();
         continueShopping.setOnClickListener(it -> returnToListOfProducts());
         finishOrder.setOnClickListener(it -> proceedToCheckout());
+        encomenda.setOnClickListener(it -> proceedToEncomenda());
         adapter.setSubtractButtonClickListener(updatedProduct -> {
             updateTotalPrice();
         });
@@ -57,6 +61,7 @@ public class CarrinhoActivity extends AppCompatActivity {
         continueShopping = findViewById(R.id.addMaisProdutos);
         finishOrder = findViewById(R.id.finalizarPedido);
         recyclerView = findViewById(R.id.carrinho_recycler_item_view);
+        encomenda = findViewById(R.id.encomenda);
     }
 
     private void renderSelectedProducts() {
@@ -76,11 +81,17 @@ public class CarrinhoActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    private void proceedToEncomenda() {
+        Intent intent = new Intent(this, EncomendaActivity.class);
+        startActivity(intent);
+    }
+
+
 
     @SuppressLint("SetTextI18n")
     private void updateTotalPrice() {
         double totalPrice = carrinho.calculateTotalPrice();
-        total.setText("R$ " + totalPrice);
+        total.setText("R$ " + decimalFormat.format(totalPrice));
     }
 
 }

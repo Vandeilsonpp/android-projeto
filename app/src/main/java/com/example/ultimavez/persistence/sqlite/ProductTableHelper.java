@@ -31,7 +31,7 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
     public static final String COLUMN_SELLER = "seller";
 
     private static final String CREATE_PRODUCTS_TABLE =
-            "CREATE TABLE " + TABLE_NAME + " (" +
+            "CREATE TABLE IF NOT EXISTS " + TABLE_NAME + " (" +
                     COLUMN_ID + " INTEGER PRIMARY KEY, " +
                     COLUMN_NAME + " TEXT, " +
                     COLUMN_CATEGORY + " TEXT CHECK (" +
@@ -60,6 +60,7 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
     @Override
     public Result<Product> save(Product product, long sellerId) {
         SQLiteDatabase db = this.getWritableDatabase();
+        onCreate(db);
         ContentValues cv = new ContentValues();
 
         cv.put(COLUMN_NAME, product.getName());
@@ -79,6 +80,7 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
     @Override
     public boolean existsByName(String name) {
         SQLiteDatabase db = this.getReadableDatabase();
+        onCreate(db);
 
         String query = "SELECT 1 FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = ?";
         String[] selectionArgs = {name};
@@ -94,11 +96,11 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
     }
 
     @Override
-    public Optional<Product> findByName(String productName) {
+    public Optional<Product> findByName(String productName, long sellerId) {
         SQLiteDatabase db = this.getReadableDatabase();
 
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = ?";
-        String[] selectionArgs = {productName};
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = ?" + " AND " + COLUMN_SELLER + " = ? " + " COLLATE NOCASE";
+        String[] selectionArgs = {productName, String.valueOf(sellerId)};
 
         Cursor cursor = db.rawQuery(query, selectionArgs);
 
@@ -128,6 +130,7 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
         cv.put(COLUMN_CATEGORY, newProduct.getCategory().toString());
         cv.put(COLUMN_DESCRIPTION, newProduct.getDescription());
         cv.put(COLUMN_PRICE, newProduct.getPrice());
+        cv.put(COLUMN_IMAGE, newProduct.getImage());
 
         long result = db.update(TABLE_NAME, cv, "id = ?", new String[] {String.valueOf(newProduct.getId())});
 

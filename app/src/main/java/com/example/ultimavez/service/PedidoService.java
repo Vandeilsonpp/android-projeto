@@ -19,6 +19,12 @@ public class PedidoService {
         pedido = MyCustomApplication.getPedido();
     }
 
+    // Criado para fins de teste unitário
+    protected PedidoService(CupomPersistence database) {
+        this.database = database;
+        this.pedido = new Pedido();
+    }
+
     public Pedido buildFromCarrinho(Carrinho carrinho) {
         pedido.setValorOriginal(carrinho.calculateTotalPrice());
         pedido.setDesconto(0);
@@ -28,18 +34,18 @@ public class PedidoService {
         return pedido;
     }
 
-    public Result<Void> aplicarCupom(String codigoCupom) {
+    public Result<Cupom> aplicarCupom(String codigoCupom) {
         if (pedido.temCupomAplicado()) {
             return Result.invalid("Já existe um cupom aplicado neste pedido");
         }
 
-        Optional<Cupom> result = database.findByCodigo(codigoCupom);
+        Optional<Cupom> result = database.findActiveByCodigo(codigoCupom);
         if (!result.isPresent()) {
             return Result.invalid("Não existe cupom ativo com esse código");
         }
 
         pedido.setCodigoCupom(result.get().getCodigo());
         pedido.setDesconto(result.get().getValorDoDesconto());
-        return Result.valid(null);
+        return Result.valid(result.get());
     }
 }

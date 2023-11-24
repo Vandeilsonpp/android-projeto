@@ -10,6 +10,10 @@ public class Carrinho {
 
     private Map<Product, Integer> productsQuantityMap;
 
+    public Map<Product, Integer> getProductsQuantityMap() {
+        return productsQuantityMap;
+    }
+
     public Carrinho() {
         productsQuantityMap = new HashMap<>();
     }

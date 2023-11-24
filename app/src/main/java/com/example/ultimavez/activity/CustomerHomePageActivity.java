@@ -11,7 +11,7 @@ import com.example.ultimavez.model.enums.CategoryEnum;
 
 public class CustomerHomePageActivity extends AppCompatActivity {
 
-    private CardView cPremium, cGourmet, cVegano, cEspeciais, cEncomendar, cPedidos, cHistoria;
+    private CardView cPremium, cGourmet, cVegano, cEspeciais, cDeslogar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,11 +25,17 @@ public class CustomerHomePageActivity extends AppCompatActivity {
         cGourmet.setOnClickListener(view -> openListOfProducts(CategoryEnum.GOURMET));
         cVegano.setOnClickListener(view -> openListOfProducts(CategoryEnum.VEGANO));
         cEspeciais.setOnClickListener(view -> openListOfProducts(CategoryEnum.ESPECIAIS));
+        cDeslogar.setOnClickListener(vire -> deslogar());
+    }
+
+    private void deslogar() {
+        Intent intent = new Intent(this, AuthActivity.class);
+        startActivity(intent);
     }
 
     private void openListOfProducts(CategoryEnum categoria) {
         Intent intent = new Intent(this, CustomerListOfProductsActivity.class);
-        intent.putExtra("category", categoria.toString()); // TODO: Verificar como esse Enum está sendo salvo no banco (uppercase etc.)
+        intent.putExtra("category", categoria.toString());
         startActivity(intent);
     }
 
@@ -38,9 +44,12 @@ public class CustomerHomePageActivity extends AppCompatActivity {
         cGourmet = findViewById(R.id.cardGourmet);
         cVegano = findViewById(R.id.cardVegano);
         cEspeciais = findViewById(R.id.cardEspeciais);
-        cEncomendar = findViewById(R.id.cardEncomenda);
-        cPedidos = findViewById(R.id.cardPedidos);
-        cHistoria = findViewById(R.id.cardOurHistory);
+        cDeslogar = findViewById(R.id.cardDeslogarUser);
+    }
+
+    @Override
+    public void onBackPressed() {
+        moveTaskToBack(true);
     }
 
 }

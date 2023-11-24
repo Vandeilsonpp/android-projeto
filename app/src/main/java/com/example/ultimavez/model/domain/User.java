@@ -14,8 +14,9 @@ public class User {
     private String address;
     private String zipCode;
     private String city;
+    private String passwordAgain;
 
-    public User(long id, UserEnum type, String email, String password, String fullName, String document, String phoneNumber, String address, String zipCode, String city) {
+    public User(long id, UserEnum type, String email, String password, String fullName, String document, String phoneNumber, String address, String zipCode, String city, String passwordAgain) {
         this.id = id;
         this.type = type;
         this.email = email;
@@ -26,9 +27,24 @@ public class User {
         this.address = address;
         this.zipCode = zipCode;
         this.city = city;
+        this.passwordAgain = passwordAgain;
     }
 
-    public User(UserEnum type, String email, String password, String fullName, String document, String phoneNumber, String address, String zipCode, String city) {
+    public User(UserEnum type, String email, String password, String fullName, String document, String phoneNumber, String address, String zipCode, String city, String passwordAgain) {
+        this.type = type;
+        this.email = email;
+        this.password = password;
+        this.fullName = fullName;
+        this.document = document;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.zipCode = zipCode;
+        this.city = city;
+        this.passwordAgain = passwordAgain;
+    }
+
+    public User(long id, UserEnum type, String email, String password, String fullName, String document, String phoneNumber, String address, String zipCode, String city) {
+        this.id = id;
         this.type = type;
         this.email = email;
         this.password = password;
@@ -82,5 +98,9 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getPasswordAgain() {
+        return passwordAgain;
     }
 }

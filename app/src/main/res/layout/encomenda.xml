@@ -10,9 +10,9 @@
 
     tools:context=".activity.CarrinhoActivity">
 
-<!-- Header -->
+    <!-- Header -->
     <LinearLayout
-        android:layout_marginTop="-110dp"
+        android:layout_marginTop="-200dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -23,7 +23,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:layout_marginTop="-110dp"
+            android:layout_marginTop="-80dp"
             android:layout_marginBottom="-18dp"
             android:layout_gravity="center">
 
@@ -62,7 +62,7 @@
             android:layout_marginBottom="8dp"
             android:gravity="center_vertical"
             android:minHeight="36dp"
-            android:text="Resumo do pedido"
+            android:text="Resumo da encomenda"
             android:textStyle="bold" />
 
         <TableRow
@@ -90,7 +90,41 @@
                 android:paddingStart="20dp"
                 android:clickable="false"
                 android:focusable="false"
-                android:id="@+id/compraTotal"
+                android:id="@+id/encomendaTotal"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:background="@drawable/bg_edit_text"
+                android:hint="R$ 00.00"
+                android:inputType="textEmailAddress"
+                android:minHeight="36dp" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="6dp"
+            android:gravity="center_vertical">
+
+            <TextView
+                android:textColor="@color/black"
+                android:layout_width="85dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="32dp"
+                android:gravity="center_vertical"
+                android:minHeight="34dp"
+                android:text="Quantidade"
+                android:textStyle="bold" />
+
+            <EditText
+                android:textColor="@color/black"
+                android:textColorHint="@color/grey"
+                android:paddingEnd="20dp"
+                android:paddingStart="20dp"
+                android:clickable="false"
+                android:focusable="false"
+                android:id="@+id/enconmendaQuantidade"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -125,7 +159,7 @@
                 android:paddingStart="20dp"
                 android:clickable="false"
                 android:focusable="false"
-                android:id="@+id/compraDesconto"
+                android:id="@+id/encomendaDesconto"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -159,7 +193,7 @@
                 android:paddingStart="20dp"
                 android:clickable="false"
                 android:focusable="false"
-                android:id="@+id/compraValorTotal"
+                android:id="@+id/encomendaValorFinal"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
@@ -171,106 +205,28 @@
     </TableLayout>
 
     <!-- Cupom de desconto -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/linearLayout4"
+    <LinearLayout
+        android:gravity="start"
+        android:padding="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"
-        android:gravity="start">
+        android:layout_marginStart="10dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView14"
+            android:textColor="@color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
+            android:layout_gravity="start"
+            android:layout_marginEnd="5dp"
             android:gravity="center_vertical"
-            android:text="Cupom"
-            android:textColor="@color/black"
+            android:text="Caso a quantidade de cupcakes seja acima de 25, o desconto aplicado será de 15%. Acima de 50, o desconto é de 30%."
             android:textSize="16sp"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/cupom" />
+            android:textStyle="bold" />
 
-        <EditText
-            android:id="@+id/cupom"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:background="@drawable/bg_edit_text"
-            android:hint="ADF3GHHJ"
-            android:inputType="none"
-            android:minHeight="36dp"
-            android:paddingStart="4dp"
-            android:paddingEnd="4dp"
-            android:textColor="@color/black"
-            android:textColorHint="@color/grey"
-            app:layout_constraintBaseline_toBaselineOf="@+id/aplicarCupomDesconto"
-            app:layout_constraintEnd_toStartOf="@+id/aplicarCupomDesconto"
-            app:layout_constraintStart_toEndOf="@+id/textView14" />
-
-        <Button
-            android:id="@+id/aplicarCupomDesconto"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
-            android:layout_marginEnd="14dp"
-            android:text="Aplicar"
-            android:textColor="#FFFFFF"
-            app:backgroundTint="@color/black"
-            app:cornerRadius="20dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <!-- Método de pagamento -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical">
-
-        <TextView
-            android:textColor="@color/black"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Método de pagamento"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:padding="8dp" />
-
-        <RadioGroup
-            android:id="@+id/paymentMethodRadioGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <RadioButton
-                android:drawablePadding="10dp"
-                android:textColor="@color/black"
-                android:id="@+id/pixRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Pix"
-                android:drawableLeft="@drawable/pix"
-                android:paddingStart="6dp" />
-
-            <RadioButton
-                android:drawablePadding="10dp"
-                android:textColor="@color/black"
-                android:id="@+id/creditoRadioButton"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Crédito"
-                android:drawableLeft="@drawable/mastercard"
-                android:paddingStart="16dp" />
-        </RadioGroup>
 
     </LinearLayout>
-
-
 
     <!-- Finalizar Compra -->
     <LinearLayout
@@ -280,12 +236,12 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/finalizarCompra"
+            android:id="@+id/finalizarEncomenda"
             android:layout_width="210dp"
             android:layout_height="55dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:text="Finalizar Compra"
+            android:text="Finalizar Encomenda"
             android:textColor="#FFFFFF"
             app:backgroundTint="@color/teal_700"
             app:cornerRadius="20dp" />

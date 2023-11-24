@@ -69,7 +69,6 @@ public class Product implements Serializable {
                 ", category=" + category +
                 ", description='" + description + '\'' +
                 ", price=" + price +
-                ", image=" + Arrays.toString(image) +
                 ", seller=" + seller +
                 '}';
     }

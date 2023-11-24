@@ -1,11 +1,16 @@
 <resources>
-    <string name="app_name">ultimavez</string>
+    <string name="app_name">Sweet Dreams</string>
 
     <string-array name="categorias">
         <item>Gourmet</item>
         <item>Vegano</item>
         <item>Premium</item>
         <item>Especiais</item>
+    </string-array>
+
+    <string-array name="ativar">
+        <item>Sim</item>
+        <item>Não</item>
     </string-array>
 
 </resources>

@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
 
@@ -22,6 +24,7 @@ public class AuthActivity extends AppCompatActivity {
     private Button btnAcessar, btnCadastro, btnRedefinirSenha;
     private EditText campoEmail, camposenha;
     private Switch tipoAcesso;
+    private CheckBox verSenha;
     private final LoginService loginService = new LoginService();
     SharedPreferences sharedPreferences;
 
@@ -35,18 +38,15 @@ public class AuthActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
 
         btnAcessar.setOnClickListener(it -> realizarLogin());
-        //btnAcessar.setOnClickListener(it -> realizarLoginByPass());
         btnCadastro.setOnClickListener(view -> abrirCadastro());
         btnRedefinirSenha.setOnClickListener(view -> abrirRedefinirSenha());
-    }
+        verSenha.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            int inputType = isChecked ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD;
+            camposenha.setInputType(inputType);
 
-    private void realizarLoginByPass() {
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putLong("userId", 5);
-        editor.apply();
-
-        Intent intent = new Intent(AuthActivity.this, SellerHomePageActivity.class);
-        startActivity(intent);
+            camposenha.setSelection(camposenha.length());
+        });
     }
 
     private void realizarLogin() {
@@ -78,6 +78,7 @@ public class AuthActivity extends AppCompatActivity {
         btnAcessar = findViewById(R.id.btnLogin);
         tipoAcesso = findViewById(R.id.switchAcesso);
         btnRedefinirSenha = findViewById(R.id.btnForgotPassword);
+        verSenha = findViewById(R.id.checkBoxShowPassword);
     }
 
     private void abrirCadastro() {
