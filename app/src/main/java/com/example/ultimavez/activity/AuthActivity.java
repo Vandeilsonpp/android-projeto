@@ -48,7 +48,6 @@ public class AuthActivity extends AppCompatActivity {
             camposenha.setSelection(camposenha.length());
         });
     }
-
     private void realizarLogin() {
         LoginDTO loginDTO = new LoginDTO(
                 campoEmail.getText().toString(),
