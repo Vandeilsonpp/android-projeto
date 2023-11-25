@@ -51,7 +51,7 @@ public class SignUpActivity extends AppCompatActivity {
             txtPassword.setInputType(inputType);
             txtPassword.setSelection(txtPassword.length());
             txtSenhaNovamente.setInputType(inputType);
-            txtSenhaNovamente.setSelection(txtSenhaNovamente.length());
+            txtSenhaNovamente.setSelection(txtPassword.length());
         });
 
     }
