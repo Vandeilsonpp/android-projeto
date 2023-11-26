@@ -55,6 +55,9 @@
             android:name=".activity.EncomendaActivity"
             android:exported="false" />
         <activity
+            android:name=".activity.ListCupomActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>

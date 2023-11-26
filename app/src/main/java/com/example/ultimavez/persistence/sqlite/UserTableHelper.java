@@ -87,7 +87,7 @@ public class UserTableHelper extends SQLiteOpenHelper implements UserPersistence
     @Override
     public Optional<User> findByEmailAndType(String email, UserEnum userType) {
         SQLiteDatabase db = this.getReadableDatabase();
-
+        onCreate(db);
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_EMAIL + " = ? AND " + COLUMN_TYPE + " = ?";
         String[] selectionArgs = {email, userType.toString()};
 

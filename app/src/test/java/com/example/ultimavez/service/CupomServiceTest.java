@@ -26,7 +26,7 @@ public class CupomServiceTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        defaultCupom = new Cupom("ABC", true, 5);
+        defaultCupom = new Cupom("ABC", true, 5, 1);
     }
 
     @Test
@@ -40,7 +40,7 @@ public class CupomServiceTest {
 
     @Test
     public void whenAttCupom_withNullValues_shouldReturnInvalidCupom() {
-        defaultCupom = new Cupom(null, false, 0);
+        defaultCupom = new Cupom(null, false, 0, 1);
 
         Result<Cupom> result = service.attCupom(defaultCupom);
 

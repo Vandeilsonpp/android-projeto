@@ -1,5 +1,6 @@
 package com.example.ultimavez.activity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -20,10 +21,11 @@ import java.util.Optional;
 
 public class CupomActivity extends AppCompatActivity {
 
-    private EditText txtBuscarCupom, txtCodigoCupom, txtValorCupom;
-    private Button buscarCupom, atualizarCupom;
+    private EditText txtCodigoCupom, txtValorCupom;
+    private Button atualizarCupom;
     private Spinner ativarCupom;
     private Cupom cupomEditavel;
+    SharedPreferences sharedPreferences;
 
     private final CupomService cupomService = new CupomService();
 
@@ -32,18 +34,22 @@ public class CupomActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.manage_cupom);
         getSupportActionBar().hide();
+        sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
 
         inicializarComponentes();
 
-        buscarCupom.setOnClickListener(it -> findCupom());
+        cupomEditavel = (Cupom) getIntent().getSerializableExtra("updatedCupom");
+
+        if (cupomEditavel != null) {
+            mostrarCupomNaTela(cupomEditavel);
+        }
+
         atualizarCupom.setOnClickListener(it -> attCupom());
     }
 
     private void inicializarComponentes() {
-        txtBuscarCupom = findViewById(R.id.editTextCupomSearchName);
         txtCodigoCupom = findViewById(R.id.editTextCupomCod);
         txtValorCupom = findViewById(R.id.editTextNewCupomValue);
-        buscarCupom = findViewById(R.id.btnSearchUpdCupom);
         atualizarCupom = findViewById(R.id.btnUpdCupom);
         ativarCupom = findViewById(R.id.spActive);
 
@@ -66,23 +72,14 @@ public class CupomActivity extends AppCompatActivity {
     }
 
     private Cupom buildFromInput() {
+        long sellerId = sharedPreferences.getLong("userId", 0);
+
         String codigo = txtCodigoCupom.getText().toString();
         double valor = Double.parseDouble(txtValorCupom.getText().toString());
         boolean ativado = ativarCupom.getSelectedItemId() == 0;
 
-        return new Cupom(codigo, ativado, valor);
-    }
-
-    private void findCupom() {
-        String codigoCupom = txtBuscarCupom.getText().toString();
-
-        Optional<Cupom> cupomEncontrado = cupomService.findCupom(codigoCupom);
-        if (!cupomEncontrado.isPresent()) {
-            ErrorInflator.showErrors("Cupom não encontrado", this);
-        } else {
-            cupomEditavel = cupomEncontrado.get();
-            mostrarCupomNaTela(cupomEditavel);
-        }
+        // TODO: Pegar sellerId do SharedPreference
+        return new Cupom(codigo, ativado, valor, sellerId);
     }
 
     private void mostrarCupomNaTela(Cupom cupomEditavel) {

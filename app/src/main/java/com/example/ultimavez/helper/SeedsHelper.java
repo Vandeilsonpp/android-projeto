@@ -96,9 +96,9 @@ public class SeedsHelper {
     }
 
     private void saveCupons() {
-        cupom.saveCupom(new Cupom("QWERTY", true, 10.0));
-        cupom.saveCupom(new Cupom("ASDFGHJKL", true, 5.0));
-        cupom.saveCupom(new Cupom("POIUYTREWQ", false, 5.0));
+        cupom.saveCupom(new Cupom("QWERTY", true, 10.0,1));
+        cupom.saveCupom(new Cupom("ASDFGHJKL", true, 5.0, 2));
+        cupom.saveCupom(new Cupom("POIUYTREWQ", false, 5.0, 1));
     }
 
     public byte[] image() {

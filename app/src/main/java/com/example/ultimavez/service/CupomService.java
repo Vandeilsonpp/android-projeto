@@ -5,6 +5,7 @@ import com.example.ultimavez.helper.Result;
 import com.example.ultimavez.model.domain.Cupom;
 import com.example.ultimavez.persistence.CupomPersistence;
 
+import java.util.List;
 import java.util.Optional;
 
 public class CupomService {
@@ -55,4 +56,9 @@ public class CupomService {
         return value == null || value.trim().isEmpty();
     }
 
+    public Result<List<Cupom>> getAllCupomById(long sellerId) {
+        Optional<List<Cupom>> cupomList = cupomPersistence.findAllById(sellerId);
+
+        return cupomList.isPresent() ? Result.valid(cupomList.get()) : Result.invalid("Não há cupons cadastrados");
+    }
 }
