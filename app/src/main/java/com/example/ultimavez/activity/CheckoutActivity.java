@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -112,6 +113,8 @@ public class CheckoutActivity extends AppCompatActivity {
                 showSuccess("Seu pedido foi recebido e pago com sucesso!", CustomerHomePageActivity.class);
                 carrinho.cleanCarrinho();
             }
+        } else {
+            Toast.makeText(this, "Selecione um método de pagamento", Toast.LENGTH_SHORT).show();
         }
     }
 
