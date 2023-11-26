@@ -2,6 +2,7 @@ package com.example.ultimavez.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import com.example.ultimavez.R;
 import com.example.ultimavez.fragment.ErrorInflator;
@@ -18,14 +20,16 @@ import com.example.ultimavez.model.DTO.LoginDTO;
 import com.example.ultimavez.model.domain.User;
 import com.example.ultimavez.model.enums.UserEnum;
 import com.example.ultimavez.service.LoginService;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 
 public class AuthActivity extends AppCompatActivity {
 
     private Button btnAcessar, btnCadastro, btnRedefinirSenha;
     private EditText campoEmail, camposenha;
-    private Switch tipoAcesso;
+    private MaterialButtonToggleGroup toggleGroup;
     private CheckBox verSenha;
     private final LoginService loginService = new LoginService();
+    private UserEnum userType;
     SharedPreferences sharedPreferences;
 
     @Override
@@ -47,12 +51,33 @@ public class AuthActivity extends AppCompatActivity {
 
             camposenha.setSelection(camposenha.length());
         });
+
+        toggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
+            if (isChecked) {
+                switch (checkedId) {
+                    case R.id.btncliente:
+                        userType = UserEnum.CUSTOMER;
+                        break;
+                    case R.id.btnLojista:
+                        userType = UserEnum.SELLER;
+                        break;
+
+                }
+            } else  {
+                userType = null;
+            }
+        });
     }
     private void realizarLogin() {
+        if (userType == null) {
+            Toast.makeText(this, "Selecione se você é Lojista ou Cliente", Toast.LENGTH_SHORT).show();
+            return ;
+        }
+
         LoginDTO loginDTO = new LoginDTO(
                 campoEmail.getText().toString(),
                 camposenha.getText().toString(),
-                tipoAcesso.isChecked() ? UserEnum.SELLER : UserEnum.CUSTOMER);
+                userType);
 
         Result<User> result = loginService.login(loginDTO);
 
@@ -75,9 +100,9 @@ public class AuthActivity extends AppCompatActivity {
         camposenha = findViewById(R.id.txtPassword);
         btnCadastro = findViewById(R.id.btnSignup);
         btnAcessar = findViewById(R.id.btnLogin);
-        tipoAcesso = findViewById(R.id.switchAcesso);
         btnRedefinirSenha = findViewById(R.id.btnForgotPassword);
         verSenha = findViewById(R.id.checkBoxShowPassword);
+        toggleGroup = findViewById(R.id.materialButtonToggleGroup);
     }
 
     private void abrirCadastro() {

@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Switch;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,7 @@ import com.example.ultimavez.helper.Result;
 import com.example.ultimavez.model.domain.User;
 import com.example.ultimavez.model.enums.UserEnum;
 import com.example.ultimavez.service.UserService;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.util.List;
 import java.util.Locale;
@@ -27,8 +29,9 @@ public class SignUpActivity extends AppCompatActivity {
 
     private EditText txtEmail, txtPassword, txtFullName, txtCpf, txtPhone, txtAddress, txtZipCode, txtCity, txtSenhaNovamente;
     private Button btnSignup;
-    private Switch userTypeSwitch;
     private CheckBox verSenhas;
+    private MaterialButtonToggleGroup toggleGroup;
+    private UserEnum userType;
 
     private final UserService userService = new UserService();
 
@@ -52,6 +55,22 @@ public class SignUpActivity extends AppCompatActivity {
             txtPassword.setSelection(txtPassword.length());
             txtSenhaNovamente.setInputType(inputType);
             txtSenhaNovamente.setSelection(txtSenhaNovamente.length());
+        });
+
+        toggleGroup.addOnButtonCheckedListener((group, checkedId, isChecked) -> {
+            if (isChecked) {
+                switch (checkedId) {
+                    case R.id.btncliente2:
+                        userType = UserEnum.CUSTOMER;
+                        break;
+                    case R.id.btnLojista2:
+                        userType = UserEnum.SELLER;
+                        break;
+
+                }
+            } else  {
+                userType = null;
+            }
         });
 
     }
@@ -170,12 +189,16 @@ public class SignUpActivity extends AppCompatActivity {
         txtZipCode = findViewById(R.id.txtZipCode);
         txtCity = findViewById(R.id.txtCity);
         btnSignup = findViewById(R.id.btnSign);
-        userTypeSwitch = findViewById(R.id.switchAcesso);
+        toggleGroup = findViewById(R.id.materialButtonToggleGroup2);
         txtSenhaNovamente = findViewById(R.id.txtPasswordAgain);
         verSenhas = findViewById(R.id.checkBoxShowPasswordSignUp);
     }
 
     private void saveUser() {
+        if (this.userType == null) {
+            Toast.makeText(this, "Selecione se você é Lojista ou Cliente", Toast.LENGTH_SHORT).show();
+            return ;
+        }
         User user = buildUserFromInput();
         Result<User> result = userService.saveUser(user);
 
@@ -196,7 +219,7 @@ public class SignUpActivity extends AppCompatActivity {
         String address = txtAddress.getText().toString().toLowerCase(Locale.ROOT);
         String zipCode = txtZipCode.getText().toString();
         String city = txtCity.getText().toString().toLowerCase(Locale.ROOT);
-        UserEnum userType = userTypeSwitch.isChecked() ? UserEnum.SELLER : UserEnum.CUSTOMER;
+        UserEnum userType = this.userType;
         String passwordAgain = txtSenhaNovamente.getText().toString();
 
         return new User(userType, email,password,fullName, cpf, phone, address, zipCode, city, passwordAgain);
