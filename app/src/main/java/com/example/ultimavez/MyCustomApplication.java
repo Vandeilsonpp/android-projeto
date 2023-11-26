@@ -27,7 +27,7 @@ public class MyCustomApplication extends Application {
     private static CupomPersistence cupomPersistence;
     private static PedidoPersistence pedidoPersistence;
     private static EncomendaPersistence encomendaPersistence;
-    public static final int DATABASE_VERSION = 23;
+    public static final int DATABASE_VERSION = 24;
     private static List<Product> selectedProducts;
     private static Carrinho carrinho;
     private static Pedido pedido;

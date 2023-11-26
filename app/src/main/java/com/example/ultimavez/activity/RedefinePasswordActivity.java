@@ -1,7 +1,9 @@
 package com.example.ultimavez.activity;
 
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,6 +19,7 @@ public class RedefinePasswordActivity extends AppCompatActivity {
 
     private EditText email, novaSenha, confirmarNovaSenha;
     private Button redefinir;
+    private CheckBox verSenha;
     private final UserService userService = new UserService();
 
     @Override
@@ -27,6 +30,15 @@ public class RedefinePasswordActivity extends AppCompatActivity {
 
         inicializarComponentes();
         redefinir.setOnClickListener(it -> updatePassword());
+        verSenha.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            int inputType = isChecked ? InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                    : InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD;
+            novaSenha.setInputType(inputType);
+            novaSenha.setSelection(novaSenha.length());
+
+            confirmarNovaSenha.setInputType(inputType);
+            confirmarNovaSenha.setSelection(confirmarNovaSenha.length());
+        });
 
     }
 
@@ -35,6 +47,7 @@ public class RedefinePasswordActivity extends AppCompatActivity {
         novaSenha = findViewById(R.id.txtNewPassword);
         confirmarNovaSenha = findViewById(R.id.txtSamePassword);
         redefinir = findViewById(R.id.btnRedefine);
+        verSenha = findViewById(R.id.checkBoxShowRedefinePassword);
     }
 
     private void updatePassword() {
