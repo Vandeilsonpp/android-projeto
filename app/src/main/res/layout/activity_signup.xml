@@ -463,6 +463,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btncliente2"
                         android:textColor="#000000"
+                        app:strokeColor="@color/grey"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -472,6 +473,7 @@
                     <com.google.android.material.button.MaterialButton
                         android:id="@+id/btnLojista2"
                         android:textColor="#000000"
+                        app:strokeColor="@color/grey"
                         style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
