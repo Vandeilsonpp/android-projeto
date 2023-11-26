@@ -445,36 +445,39 @@
             </TableRow>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="15dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView"
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/materialButtonToggleGroup2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sou Cliente"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    app:singleSelection="true">
 
-                <Switch
-                    android:id="@+id/switchAcesso"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btncliente2"
+                        android:textColor="#000000"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:backgroundTint="@color/switch_color"
+                        android:text="Sou Cliente" />
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sou Lojista"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLojista2"
+                        android:textColor="#000000"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:backgroundTint="@color/switch_color"
+                        android:text="Sou Lojista" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
             </LinearLayout>
         </TableLayout>
 
