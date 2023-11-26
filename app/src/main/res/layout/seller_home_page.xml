@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_white"
-    android:gravity="center"
+    android:gravity="start"
     android:orientation="vertical"
     tools:context=".activity.SellerHomePageActivity">
 
     <LinearLayout
-        android:layout_marginTop="-270dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -20,6 +20,7 @@
         <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:layout_marginTop="-70dp"
             android:layout_gravity="center">
 
             <ImageView
@@ -46,7 +47,6 @@
 
     <!-- Produtos principais -->
     <LinearLayout
-        android:layout_marginBottom="-100dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
