@@ -43,10 +43,6 @@ public class ProductService {
         return Result.valid(product);
     }
 
-    public Optional<Product> findProduct(String name, long sellerId) {
-        return database.findByName(name, sellerId);
-    }
-
     public Result<List<Product>> getAllProducts(long sellerId) {
         Optional<List<Product>> productList = database.findAllProducts(sellerId);
 

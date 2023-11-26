@@ -38,9 +38,9 @@ import java.util.Optional;
 
 public class UpdateProductActivity extends AppCompatActivity {
 
-    private EditText searchedProduct, productName, productDescription, productValue;
+    private EditText productName, productDescription, productValue;
     private Spinner productCategory;
-    private Button btnSave, btnSelectImage, btnSearch, btnDelete;
+    private Button btnSave, btnSelectImage, btnDelete;
     private ImageView productImage;
 
     private static final int IMAGE_PICKER_REQUEST = 1;
@@ -57,21 +57,24 @@ public class UpdateProductActivity extends AppCompatActivity {
         inicializarComponentes();
         sharedPreferences = getSharedPreferences("MyPreferences", MODE_PRIVATE);
 
-        btnSearch.setOnClickListener(it -> findProduct());
+        productToBeUpdated = (Product) getIntent().getSerializableExtra("updatedProduct");
+
+        if (productToBeUpdated != null) {
+            setProductInfoOnDisplay(productToBeUpdated);
+        }
+
         btnSelectImage.setOnClickListener(it -> selectImage());
         btnSave.setOnClickListener(it -> updateProduct());
         btnDelete.setOnClickListener(it -> deleteProduct());
     }
 
     private void inicializarComponentes() {
-        searchedProduct = findViewById(R.id.editTextProductSearchName);
         productName = findViewById(R.id.editTextProductNewName);
         productDescription = findViewById(R.id.editTextNewDescription);
         productValue = findViewById(R.id.editTextNewValue);
         productCategory = findViewById(R.id.spNewCategoria);
         btnSave = findViewById(R.id.btnNewSave);
         btnSelectImage = findViewById(R.id.btnNewSelectImage);
-        btnSearch = findViewById(R.id.btnSearchUpdPr);
         btnDelete = findViewById(R.id.btnDelete);
         productImage = findViewById(R.id.imageNewProduct);
 
@@ -79,19 +82,6 @@ public class UpdateProductActivity extends AppCompatActivity {
                 this, R.array.categorias, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         productCategory.setAdapter(adapter);
-    }
-
-    private void findProduct() {
-        String productName = searchedProduct.getText().toString().toLowerCase(Locale.ROOT);
-        long sellerId = sharedPreferences.getLong("userId", 0);
-
-        Optional<Product> foundProduct = productService.findProduct(productName, sellerId);
-        if (!foundProduct.isPresent()) {
-            ErrorInflator.showErrors("Produto não encontrado", this);
-        } else {
-            productToBeUpdated = foundProduct.get();
-            setProductInfoOnDisplay(foundProduct.get());
-        }
     }
 
     private void setProductInfoOnDisplay(Product product) {
@@ -185,11 +175,6 @@ public class UpdateProductActivity extends AppCompatActivity {
 
 
     private void updateProduct() {
-        // TODO: Foto não está atualizando
-        if (productToBeUpdated == null) {
-            return;
-        }
-        
         Product product = buildFromInput();
         product.setId(productToBeUpdated.getId());
         Result<Product> result = productService.updateProduct(product);

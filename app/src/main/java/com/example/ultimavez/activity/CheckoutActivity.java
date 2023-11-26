@@ -75,12 +75,12 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void buildResumoPedido() {
-        valor.setText(decimalFormat.format(pedido.getValorOriginal()));
-        desconto.setText(String.valueOf(pedido.getDesconto()));
-        valorTotal.setText(decimalFormat.format(pedido.getValorFinal()));
+        valor.setText( "R$ " + decimalFormat.format(pedido.getValorOriginal()));
+        desconto.setText( "R$ " + String.valueOf(pedido.getDesconto()));
+        valorTotal.setText( "R$ " + decimalFormat.format(pedido.getValorFinal()));
     }
 
-    private void applyCupom() { // Testar Só Depois que implementar o Save de cupom por parte do seller
+    private void applyCupom() {
         String codigoCupom = cupom.getText().toString();
         Result<Cupom> result = pedidoService.aplicarCupom(codigoCupom);
 
