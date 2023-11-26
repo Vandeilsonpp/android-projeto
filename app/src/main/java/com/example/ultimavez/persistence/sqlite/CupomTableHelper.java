@@ -159,6 +159,7 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
     @Override
     public Optional<List<Cupom>> findAllById(long sellerId) {
         SQLiteDatabase db = this.getReadableDatabase();
+        onCreate(db);
         String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_SELLER + " = ?";
         String[] selectionArgs = {String.valueOf(sellerId)};
 
