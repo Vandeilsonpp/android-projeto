@@ -125,6 +125,7 @@
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btncliente"
+            app:strokeColor="@color/grey"
             android:textColor="#000000"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
@@ -135,6 +136,7 @@
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btnLojista"
             android:textColor="#000000"
+            app:strokeColor="@color/grey"
             style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
