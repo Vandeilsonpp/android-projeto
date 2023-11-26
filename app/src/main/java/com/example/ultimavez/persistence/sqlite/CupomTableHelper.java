@@ -10,8 +10,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 import com.example.ultimavez.MyCustomApplication;
 import com.example.ultimavez.helper.Result;
 import com.example.ultimavez.model.domain.Cupom;
+import com.example.ultimavez.model.domain.Product;
+import com.example.ultimavez.model.enums.CategoryEnum;
 import com.example.ultimavez.persistence.CupomPersistence;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersistence {
@@ -23,6 +27,7 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
     public static final String COLUMN_CODIGO = "codigo";
     public static final String COLUMN_VALIDO = "valido";
     public static final String COLUMN_VALOR = "valor";
+    public static final String COLUMN_SELLER = "seller";
 
 
     private static final String CREATE_CUPOM_TABLE =
@@ -30,8 +35,8 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
                     COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                     COLUMN_CODIGO + " TEXT NOT NULL, " +
                     COLUMN_VALIDO + " TEXT NOT NULL, " +
-                    COLUMN_VALOR + " TEXT NOT NULL " +
-                    ");";
+                    COLUMN_VALOR + " TEXT NOT NULL, " +
+                    COLUMN_SELLER + " INTEGER);";
 
     public CupomTableHelper(Context context) {
         super(context, DATABASE_NAME, null, MyCustomApplication.DATABASE_VERSION);
@@ -62,6 +67,7 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
         contentValues.put(COLUMN_CODIGO, cupom.getCodigo());
         contentValues.put(COLUMN_VALIDO, cupom.eValido());
         contentValues.put(COLUMN_VALOR, String.valueOf(cupom.getValorDoDesconto()));
+        contentValues.put(COLUMN_SELLER, String.valueOf(cupom.getSellerId()));
 
         String whereClause = COLUMN_CODIGO + " = ?";
         String[] whereArgs = {cupom.getCodigo()};
@@ -93,7 +99,8 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
                  cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
                  cursor.getString(cursor.getColumnIndex(COLUMN_CODIGO)),
                  cursor.getInt(cursor.getColumnIndex(COLUMN_VALIDO)) == 1,
-                 cursor.getDouble(cursor.getColumnIndex(COLUMN_VALOR))
+                 cursor.getDouble(cursor.getColumnIndex(COLUMN_VALOR)),
+                 cursor.getLong(cursor.getColumnIndex(COLUMN_SELLER))
             );
 
             cursor.close();
@@ -119,7 +126,8 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
                     cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
                     cursor.getString(cursor.getColumnIndex(COLUMN_CODIGO)),
                     cursor.getInt(cursor.getColumnIndex(COLUMN_VALIDO)) == 1,
-                    cursor.getDouble(cursor.getColumnIndex(COLUMN_VALOR))
+                    cursor.getDouble(cursor.getColumnIndex(COLUMN_VALOR)),
+                    cursor.getLong(cursor.getColumnIndex(COLUMN_SELLER))
             );
 
             cursor.close();
@@ -146,5 +154,34 @@ public class CupomTableHelper extends SQLiteOpenHelper implements CupomPersisten
         db.close();
 
         return recordExists;
+    }
+
+    @Override
+    public Optional<List<Cupom>> findAllById(long sellerId) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_SELLER + " = ?";
+        String[] selectionArgs = {String.valueOf(sellerId)};
+
+        Cursor cursor = db.rawQuery(query, selectionArgs);
+
+        List<Cupom> cupons = new ArrayList<>();
+
+        if (cursor.moveToFirst()) {
+            do {
+                @SuppressLint("Range") Cupom cupom = new Cupom(
+                        cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
+                        cursor.getString(cursor.getColumnIndex(COLUMN_CODIGO)),
+                        cursor.getInt(cursor.getColumnIndex(COLUMN_VALIDO)) == 1,
+                        cursor.getDouble(cursor.getColumnIndex(COLUMN_VALOR)),
+                        cursor.getLong(cursor.getColumnIndex(COLUMN_SELLER))
+                );
+
+                cupons.add(cupom);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+
+        return cupons.isEmpty() ? Optional.empty() : Optional.of(cupons);
     }
 }

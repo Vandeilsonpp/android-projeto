@@ -169,7 +169,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="8dp"
-                        app:srcCompat="@drawable/atualizar" />
+                        app:srcCompat="@drawable/add" />
 
                     <!-- Customizable Text -->
                     <TextView
@@ -177,11 +177,56 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
-                        android:text="Gerenciar Cupons"
+                        android:text="Cadastrar Cupons"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/listarCupons"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="18dp">
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="90dp"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- Customizable Image -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="8dp"
+                        app:srcCompat="@drawable/listar" />
+
+                    <!-- Customizable Text -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="Listar Cupons"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardDeslogarSeller"

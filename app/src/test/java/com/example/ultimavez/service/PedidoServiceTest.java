@@ -51,7 +51,7 @@ public class PedidoServiceTest {
 
     @Test
     public void whenApplyCupom_shouldReturnValidCupom() {
-        Cupom cupom = new Cupom("ABC", true, 3.0);
+        Cupom cupom = new Cupom("ABC", true, 3.0, 1);
 
         Mockito.when(database.findActiveByCodigo("ABC")).thenReturn(Optional.of(cupom));
 

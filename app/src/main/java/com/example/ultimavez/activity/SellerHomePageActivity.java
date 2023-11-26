@@ -11,7 +11,7 @@ import com.example.ultimavez.model.domain.Cupom;
 
 public class SellerHomePageActivity extends AppCompatActivity {
 
-    private CardView cadastrar, listar, cupom, deslogar;
+    private CardView cadastrarProduto, listarProduto, cadastrarCupom, listarCupom, deslogar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,17 +21,24 @@ public class SellerHomePageActivity extends AppCompatActivity {
 
         inicializarComponentes();
 
-        cadastrar.setOnClickListener(it -> abrirCadastroProduto());
-        listar.setOnClickListener(it -> abrirListarProduto());
-        cupom.setOnClickListener(it -> abrirGerenciarCupons());
+        cadastrarProduto.setOnClickListener(it -> abrirCadastroProduto());
+        listarProduto.setOnClickListener(it -> abrirListarProduto());
+        cadastrarCupom.setOnClickListener(it -> abrirGerenciarCupons());
         deslogar.setOnClickListener(it -> deslogar());
+        listarCupom.setOnClickListener(it -> abrirListarCupom());
+    }
+
+    private void abrirListarCupom() {
+        Intent intent = new Intent(SellerHomePageActivity.this, ListCupomActivity.class);
+        startActivity(intent);
     }
 
     private void inicializarComponentes() {
-        cadastrar = findViewById(R.id.cardCadastrar);
-        listar = findViewById(R.id.cardListar);
-        cupom = findViewById(R.id.cardManageCupom);
+        cadastrarProduto = findViewById(R.id.cardCadastrar);
+        listarProduto = findViewById(R.id.cardListar);
+        cadastrarCupom = findViewById(R.id.cardManageCupom);
         deslogar = findViewById(R.id.cardDeslogarSeller);
+        listarCupom = findViewById(R.id.listarCupons);
     }
 
     private void deslogar() {
