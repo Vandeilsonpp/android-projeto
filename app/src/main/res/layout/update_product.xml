@@ -10,33 +10,20 @@
     tools:context=".activity.UpdateProductActivity">
 
     <EditText
-        android:textColor="@color/black"
-        android:textColorHint="@color/grey"
         android:id="@+id/editTextProductNewName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="70dp"
         android:background="@drawable/bg_edit_text"
         android:hint="Cupcake delicioso"
         android:padding="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextProductSearchName" />
-
-    <EditText
         android:textColor="@color/black"
         android:textColorHint="@color/grey"
-        android:id="@+id/editTextProductSearchName"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="20dp"
-        android:background="@drawable/bg_edit_text"
-        android:hint="Cupcake de chocolate"
-        android:padding="8dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnSearchUpdPr"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+
 
     <EditText
         android:textColor="@color/black"
@@ -206,27 +193,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:textColor="@color/black"
-        android:id="@+id/textView9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="2dp"
-        android:text="Produto a ser atualizado"
-        app:layout_constraintBottom_toTopOf="@+id/editTextProductSearchName"
-        app:layout_constraintStart_toStartOf="@+id/editTextProductSearchName" />
-
-    <Button
-        android:id="@+id/btnSearchUpdPr"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Buscar"
-        android:textColor="#FFFFFF"
-        app:backgroundTint="@color/strong_pink"
-        app:layout_constraintBottom_toBottomOf="@+id/editTextProductSearchName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/editTextProductSearchName" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
