@@ -32,11 +32,15 @@ public class SeedsHelper {
     }
 
     public void createSeeds() {
-        if (!user.existsByEmail("lucas.pereira@gmail.com") && !product.existsByName("Limão e Coco")) {
+        if (aindaNaoForamCriados()) {
             saveUsers();
             saveProducts();
             saveCupons();
         }
+    }
+
+    private boolean aindaNaoForamCriados() {
+        return !user.existsByEmail("lucas.pereira@gmail.com") && !product.existsByName("Limão e Coco");
     }
 
     private void saveUsers() {
