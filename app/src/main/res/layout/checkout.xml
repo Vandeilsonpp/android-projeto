@@ -5,64 +5,37 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_white"
-    android:gravity="center"
+    android:gravity="top"
     android:orientation="vertical"
 
     tools:context=".activity.CarrinhoActivity">
 
-<!-- Header -->
-    <LinearLayout
-        android:layout_marginTop="-110dp"
-        android:orientation="vertical"
+    <TextView
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"
-        android:gravity="center">
-
-        <!-- Header content goes here -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="-110dp"
-            android:layout_marginBottom="-18dp"
-            android:layout_gravity="center">
-
-            <ImageView
-                android:id="@+id/upper_home"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="-20dp"
-                android:layout_marginStart="-30dp"
-                android:layout_marginEnd="-30dp"
-                app:srcCompat="@drawable/elipse_upper_home" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="250dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="-35dp"
-                app:srcCompat="@drawable/logo" />
-
-        </FrameLayout>
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Finalizar pedido"
+        android:textColor="#000000"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <!-- Resumo com produtos -->
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
+            android:fontFamily="casual"
             android:textColor="@color/black"
             android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:layout_marginStart="32dp"
             android:layout_marginBottom="8dp"
-            android:gravity="center_vertical"
+            android:gravity="center_horizontal"
             android:minHeight="36dp"
-            android:text="Resumo do pedido"
+            android:text="Resumo"
+            android:textSize="24dp"
             android:textStyle="bold" />
 
         <TableRow
@@ -90,13 +63,14 @@
                 android:paddingStart="20dp"
                 android:clickable="false"
                 android:focusable="false"
+                android:longClickable="false"
                 android:id="@+id/compraTotal"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:background="@drawable/bg_edit_text"
                 android:hint="R$ 00.00"
-                android:inputType="textEmailAddress"
+                android:inputType="none"
                 android:minHeight="36dp" />
         </TableRow>
 
@@ -125,13 +99,14 @@
                 android:paddingStart="20dp"
                 android:clickable="false"
                 android:focusable="false"
+                android:longClickable="false"
                 android:id="@+id/compraDesconto"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:background="@drawable/bg_edit_text"
                 android:hint="R$ 00.00"
-                android:inputType="textEmailAddress"
+                android:inputType="none"
                 android:minHeight="36dp" />
         </TableRow>
 
@@ -159,13 +134,14 @@
                 android:paddingStart="20dp"
                 android:clickable="false"
                 android:focusable="false"
+                android:longClickable="false"
                 android:id="@+id/compraValorTotal"
                 android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="start"
                 android:background="@drawable/bg_edit_text"
                 android:hint="R$ 00.00"
-                android:inputType="textEmailAddress"
+                android:inputType="none"
                 android:minHeight="36dp" />
         </TableRow>
     </TableLayout>
@@ -233,6 +209,7 @@
         android:orientation="vertical">
 
         <TextView
+            android:layout_marginLeft="16dp"
             android:textColor="@color/black"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -248,6 +225,7 @@
             android:orientation="vertical">
 
             <RadioButton
+                android:layout_marginLeft="16dp"
                 android:drawablePadding="10dp"
                 android:textColor="@color/black"
                 android:id="@+id/pixRadioButton"
@@ -258,6 +236,7 @@
                 android:paddingStart="6dp" />
 
             <RadioButton
+                android:layout_marginLeft="16dp"
                 android:drawablePadding="10dp"
                 android:textColor="@color/black"
                 android:id="@+id/creditoRadioButton"

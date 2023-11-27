@@ -96,32 +96,6 @@ public class ProductTableHelper extends SQLiteOpenHelper implements ProductPersi
     }
 
     @Override
-    public Optional<Product> findByName(String productName, long sellerId) {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        String query = "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = ?" + " COLLATE NOCASE " + " AND " + COLUMN_SELLER + " = ? ";
-        String[] selectionArgs = {productName, String.valueOf(sellerId)};
-
-        Cursor cursor = db.rawQuery(query, selectionArgs);
-
-        if (cursor.moveToFirst()) {
-            @SuppressLint("Range") Product product = new Product(
-              cursor.getLong(cursor.getColumnIndex(COLUMN_ID)),
-              cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
-              CategoryEnum.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY))),
-              cursor.getString(cursor.getColumnIndex(COLUMN_DESCRIPTION)),
-              cursor.getDouble(cursor.getColumnIndex(COLUMN_PRICE)),
-              cursor.getBlob(cursor.getColumnIndex(COLUMN_IMAGE)),
-              cursor.getLong(cursor.getColumnIndex(COLUMN_SELLER))
-            );
-            cursor.close();
-            return Optional.of(product);
-        }
-        cursor.close();
-        return Optional.empty();
-    }
-
-    @Override
     public Result<Product> update(Product newProduct) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();

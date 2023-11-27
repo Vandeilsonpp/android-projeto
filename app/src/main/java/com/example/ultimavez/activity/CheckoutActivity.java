@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -75,12 +76,12 @@ public class CheckoutActivity extends AppCompatActivity {
     }
 
     private void buildResumoPedido() {
-        valor.setText(decimalFormat.format(pedido.getValorOriginal()));
-        desconto.setText(String.valueOf(pedido.getDesconto()));
-        valorTotal.setText(decimalFormat.format(pedido.getValorFinal()));
+        valor.setText( "R$ " + decimalFormat.format(pedido.getValorOriginal()));
+        desconto.setText( "R$ " + String.valueOf(pedido.getDesconto()));
+        valorTotal.setText( "R$ " + decimalFormat.format(pedido.getValorFinal()));
     }
 
-    private void applyCupom() { // Testar Só Depois que implementar o Save de cupom por parte do seller
+    private void applyCupom() {
         String codigoCupom = cupom.getText().toString();
         Result<Cupom> result = pedidoService.aplicarCupom(codigoCupom);
 
@@ -112,6 +113,8 @@ public class CheckoutActivity extends AppCompatActivity {
                 showSuccess("Seu pedido foi recebido e pago com sucesso!", CustomerHomePageActivity.class);
                 carrinho.cleanCarrinho();
             }
+        } else {
+            Toast.makeText(this, "Selecione um método de pagamento", Toast.LENGTH_SHORT).show();
         }
     }
 

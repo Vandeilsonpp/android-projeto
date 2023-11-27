@@ -5,60 +5,24 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/main_white"
-    android:gravity="center"
+    android:gravity="start"
     android:orientation="vertical"
     tools:context=".activity.SellerHomePageActivity">
 
-    <LinearLayout
-        android:layout_marginTop="-270dp"
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center">
-
-        <!-- Header content goes here -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_gravity="center">
-
-            <ImageView
-                android:id="@+id/upper_home"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="-20dp"
-                android:layout_marginStart="-30dp"
-                android:layout_marginEnd="-30dp"
-                app:srcCompat="@drawable/elipse_upper_home" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="250dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="-35dp"
-                app:srcCompat="@drawable/logo" />
-
-        </FrameLayout>
-
-    </LinearLayout>
-
     <!-- Produtos principais -->
     <LinearLayout
-        android:layout_marginBottom="-100dp"
         android:layout_width="match_parent"
         android:orientation="vertical"
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="20dp"
             android:fontFamily="casual"
             android:textColor="#000000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:textSize="24dp"
+            android:textSize="36dp"
             android:gravity="center_horizontal"
             android:text="Administre seus produtos"
             android:textStyle="bold" />
@@ -98,54 +62,11 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
-                        android:text="Cadastrar"
+                        android:text="Cadastrar Produto"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardAtualizar"
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="8dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="18dp">
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="90dp"
-                    android:background="@color/main_white"
-                    android:orientation="vertical">
-
-                    <!-- Customizable Image -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="8dp"
-                        app:srcCompat="@drawable/atualizar" />
-
-                    <!-- Customizable Text -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:text="Atualizar"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardListar"
@@ -182,42 +103,8 @@
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardMeusPedidos"
-                android:layout_width="150dp"
-                android:layout_height="90dp"
-                android:layout_margin="8dp"
-                android:clickable="true"
-                android:foreground="?android:attr/selectableItemBackground"
-                app:cardCornerRadius="20dp"
-                app:cardElevation="18dp">
-
-                <LinearLayout
-                    android:layout_width="150dp"
-                    android:layout_height="90dp"
-                    android:background="@color/main_white"
-                    android:orientation="vertical">
-
-                    <!-- Customizable Image -->
-                    <ImageView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="8dp"
-                        app:srcCompat="@drawable/pedidos_feitos" />
-
-                    <!-- Customizable Text -->
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
-                        android:gravity="center"
-                        android:text="Encomendas Feitas"
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
         </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -246,7 +133,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:layout_marginTop="8dp"
-                        app:srcCompat="@drawable/atualizar" />
+                        app:srcCompat="@drawable/add" />
 
                     <!-- Customizable Text -->
                     <TextView
@@ -254,11 +141,56 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:gravity="center"
-                        android:text="Gerenciar Cupons"
+                        android:text="Cadastrar Cupons"
                         android:textColor="@color/black"
                         android:textSize="12sp" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/listarCupons"
+                android:layout_width="150dp"
+                android:layout_height="90dp"
+                android:layout_margin="8dp"
+                android:clickable="true"
+                android:foreground="?android:attr/selectableItemBackground"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="18dp">
+
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="90dp"
+                    android:background="@color/main_white"
+                    android:orientation="vertical">
+
+                    <!-- Customizable Image -->
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="8dp"
+                        app:srcCompat="@drawable/listar" />
+
+                    <!-- Customizable Text -->
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:gravity="center"
+                        android:text="Listar Cupons"
+                        android:textColor="@color/black"
+                        android:textSize="12sp" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardDeslogarSeller"

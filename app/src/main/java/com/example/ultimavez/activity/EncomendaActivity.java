@@ -59,10 +59,10 @@ public class EncomendaActivity extends AppCompatActivity {
     }
 
     private void buildEncomenda() {
-        valor.setText(decimalFormat.format(encomenda.getValor()));
+        valor.setText("R$ " + decimalFormat.format(encomenda.getValor()));
         quantidade.setText(String.valueOf(encomenda.getQuantidade()));
-        desconto.setText(decimalFormat.format(encomenda.getDesconto()));
-        total.setText(decimalFormat.format(encomenda.getValorFinal()));
+        desconto.setText("R$ " + decimalFormat.format(encomenda.getDesconto()));
+        total.setText("R$ " + decimalFormat.format(encomenda.getValorFinal()));
     }
 
     private void salvarEncomenda() {

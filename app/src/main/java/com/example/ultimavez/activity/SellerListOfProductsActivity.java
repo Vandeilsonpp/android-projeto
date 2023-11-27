@@ -1,5 +1,6 @@
 package com.example.ultimavez.activity;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -53,6 +54,8 @@ public class SellerListOfProductsActivity extends AppCompatActivity implements P
 
     @Override
     public void onProductClick(Product product) {
-
+        Intent intent = new Intent(this, UpdateProductActivity.class);
+        intent.putExtra("updatedProduct", product);
+        startActivity(intent);
     }
 }

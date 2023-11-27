@@ -10,53 +10,17 @@
 
     tools:context=".activity.SignUpActivity">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <TextView
+        android:layout_marginTop="20dp"
+        android:id="@+id/textView3"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="2"
-        android:gravity="center">
-
-        <!-- Header content goes here -->
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="200dp"
-            android:layout_marginTop="-80dp"
-            android:layout_marginBottom="-18dp"
-            android:layout_gravity="center">
-
-            <ImageView
-                android:id="@+id/upper_home"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:layout_marginTop="-20dp"
-                android:layout_marginStart="-30dp"
-                android:layout_marginEnd="-30dp"
-                app:srcCompat="@drawable/elipse_upper_home" />
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="250dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center"
-                android:layout_marginBottom="-35dp"
-                app:srcCompat="@drawable/logo" />
-
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="casual"
-            android:gravity="center"
-            android:text="Cadastro"
-            android:textColor="#000000"
-            android:textSize="36sp"
-            android:textStyle="bold" />
-
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:gravity="center"
+        android:text="Cadastro"
+        android:textColor="#000000"
+        android:textSize="36sp"
+        android:textStyle="bold" />
 
     <!-- Content with weight 5 -->
     <ScrollView
@@ -278,6 +242,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
@@ -316,6 +281,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
@@ -392,6 +358,7 @@
                     android:gravity="center_vertical">
 
                     <EditText
+                        android:inputType="number"
                         android:textColor="@color/black"
                         android:paddingStart="10dp"
                         android:textColorHint="@color/grey"
@@ -445,36 +412,41 @@
             </TableRow>
 
             <LinearLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="15dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/textView"
+                <com.google.android.material.button.MaterialButtonToggleGroup
+                    android:id="@+id/materialButtonToggleGroup2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sou Cliente"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    app:singleSelection="true">
 
-                <Switch
-                    android:id="@+id/switchAcesso"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btncliente2"
+                        android:textColor="#000000"
+                        app:strokeColor="@color/grey"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:backgroundTint="@color/switch_color"
+                        android:text="Sou Cliente" />
 
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Sou Lojista"
-                    android:textStyle="bold"
-                    android:textColor="@color/black" />
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnLojista2"
+                        android:textColor="#000000"
+                        app:strokeColor="@color/grey"
+                        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:backgroundTint="@color/switch_color"
+                        android:text="Sou Lojista" />
+
+                </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
             </LinearLayout>
         </TableLayout>
 
@@ -500,10 +472,10 @@
         <Button
             android:id="@+id/btnSign"
             android:layout_width="160dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
-            android:padding="16dp"
+            android:padding="10dp"
             android:text="Cadastrar"
             android:textColor="#FFFFFF"
             app:backgroundTint="@color/strong_pink"
