@@ -6,6 +6,7 @@ Projeto feito para entrega do PIT 2 do curso de Engenharia de Software.
 [Link de suporte para navegar até o apk](docs/app-debug.apk)
 
 ## PIT 1 - Atualizado
+[Link da documentação do PIT 1](docs/PIT-1-atualizado.pdf)
 
 ## PIT 2 - Documentação
 [Link da documentação do PIT 2](docs/PIT2-Eng-Soft-Vandeilson.pdf)
