@@ -194,7 +194,7 @@
         <Button
             android:id="@+id/btnRedefine"
             android:layout_width="160dp"
-            android:layout_height="wrap_content"
+            android:layout_height="60dp"
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:padding="16dp"
