@@ -8,6 +8,7 @@ Projeto feito para entrega do PIT 2 do curso de Engenharia de Software.
 ## PIT 1 - Atualizado
 
 ## PIT 2 - Documentação
+[Link da documentação do PIT 2](docs/PIT2-Eng-Soft-Vandeilson.pdf)
 
 ## Link do Youtube:
 [Vídeo narrado](https://www.youtube.com/watch?v=OZCOEWqT0Rs)
@@ -23,5 +24,12 @@ Projeto feito para entrega do PIT 2 do curso de Engenharia de Software.
 - 18:26 - Features Cliente
 - 22:30 - Segurança Senhas
 
-## Arquitetura do projeto
+## Link das correções após Feedbacks:
+[Vídeo narrado](https://www.youtube.com/watch?v=FejJqpVK20w)
+- Sumário do vídeo:
+- 00:00 - Melhorias gerais 
+- 02:24 - Jornada do Cliente 
+- 03:30 - Jornada do Lojista
+
+## Arquitetura geral do projeto
 ![](docs/arquitetura.png)
